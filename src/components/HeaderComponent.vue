@@ -43,7 +43,7 @@ export default {
   height: 60px;
   background-color: beige;
   position: fixed;
-  z-index: 10;
+  z-index: 20;
   box-shadow: 2px 0px 5px;
 }
 
