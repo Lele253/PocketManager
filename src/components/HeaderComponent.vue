@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <v-row class="headerow">
-      <v-col cols="4" v-if="user" class="pb-0 d-flex align-center">{{ user.username }}</v-col>
+      <v-col cols="4" v-if="user" class="pb-0 d-flex align-center"> <p class="ml-2">{{ user.username }}</p></v-col>
       <v-col cols="4" v-if="!user" class="pb-0 d-flex align-center"><p class="ml-2" style="font-size: 12px">Welcome</p>
       </v-col>
       <v-col cols="4" class="pb-0 d-flex align-center text-center"><b
@@ -18,6 +18,7 @@
 <script>
 
 import {Icon} from '@iconify/vue';
+import {mapGetters} from "vuex";
 
 export default {
   name: "HeaderComponent",
@@ -30,6 +31,9 @@ export default {
       this.$store.dispatch('user', null);
       this.$router.push("/")
     }
+  },
+  computed: {
+    ...mapGetters(['user'])
   },
   components: {
     Icon,
@@ -52,6 +56,7 @@ export default {
 }
 
 .icon {
+  cursor: pointer;
   font-size: 35px;
 }
 </style>

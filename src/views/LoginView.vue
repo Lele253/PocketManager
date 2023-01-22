@@ -1,6 +1,35 @@
 <template>
-  <div>
+  <div class=" d-flex justify-center">
+    <v-card class="logincard mt-12">
+      <v-card-title class="text-center">
+        Login
+      </v-card-title>
+      <v-card-text>
+        <v-form @submit.prevent="login">
 
+        <v-row class="mt-10" justify="center">
+          <v-col cols="8">
+            <v-text-field v-model="email" type="email" label="Username" variant="solo"></v-text-field>
+
+          </v-col>
+          <v-col cols="8">
+            <v-text-field v-model="password" type="password" label="Password" variant="solo"></v-text-field>
+          </v-col>
+          <v-col class=" d-flex justify-center mt-n4" cols="6">
+            <v-btn type="submitç" class="button">Login </v-btn>
+          </v-col>
+          <v-col cols="10">
+            <p class="text-center">
+              Sie haben noch kein Account?
+            </p>
+            <p class="mt-2 text-center">
+              <router-link to="/registrieren">Dann registrieren Sie sich jetzt!</router-link>
+            </p>
+          </v-col>
+        </v-row>
+        </v-form>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
@@ -11,7 +40,9 @@ import {mapGetters} from "vuex";
 export default {
   data() {
     return {
-      name: "Login"
+      name: "Login",
+      email:'',
+      password:'',
     }
   },
   methods: {
@@ -40,5 +71,13 @@ export default {
 </script>
 
 <style scoped>
+.button{
+  width: 100%;
+  background: v-bind($store.state.color);
 
+}
+.logincard{
+  height: 450px;
+  width: 360px;
+}
 </style>
