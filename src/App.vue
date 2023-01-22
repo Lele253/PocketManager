@@ -5,7 +5,6 @@
       <v-img
           class="hintergrund"
           src="https://i.pinimg.com/564x/a2/25/1e/a2251ecad7b405f57195e13e88da6d2e.jpg">
-      <div  style="width: 100% ; height: 100% ; background-color: rgba(0,0,0,0.43); position: relative; z-index: 6"></div>
       </v-img>
       <router-view class="router">
       </router-view>
