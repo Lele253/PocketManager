@@ -23,7 +23,7 @@ export default {
 .footer {
   width: 100%;
   height: 50px;
-  background-color: beige;
+  background-color: #d35cf1;
   position: fixed;
   z-index: 10;
   top: 95vh;

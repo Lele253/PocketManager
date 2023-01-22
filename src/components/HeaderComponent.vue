@@ -41,7 +41,7 @@ export default {
 .header {
   width: 100%;
   height: 60px;
-  background-color: beige;
+  background-color: #d35cf1;
   position: fixed;
   z-index: 20;
   box-shadow: 2px 0px 5px;
