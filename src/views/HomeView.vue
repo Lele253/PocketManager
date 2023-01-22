@@ -34,10 +34,10 @@ export default {
 .farbIcon{
   cursor: pointer;
   font-size: 40px;
-  position: relative;
-  z-index: 310;
+  position: fixed;
+  z-index: 330;
   left: 88%;
-  top: 15px;
+  top: 80px;
   color: #c20a0a;
 }
 </style>
