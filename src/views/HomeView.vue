@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="i in testarray" :key="i">
-      {{i}}
+      {{$store.state.test}}
     </div>
   </div>
 </template>
@@ -10,11 +10,14 @@
 
 
 export default {
-  name: 'HomeView',
+  name: 'PocketManager',
+  created() {
+    this.$store.state.headerTitle=this.name
+  },
   components: {},
   data(){
     return{
-      testarray:[15555,1,1,1,1,1,1,1,1,1,1,1,1,11,1,22221,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,9999]
+
     }
   }
 }

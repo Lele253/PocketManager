@@ -12,11 +12,11 @@ export default {
 <style scoped>
 .footer {
   width: 100%;
-  height: 46px;
+  height: 50px;
   background-color: red;
   position: fixed;
   z-index: 10;
-  top: 93vh;
+  top: 95vh;
 }
 
 </style>

@@ -19,6 +19,12 @@ export default {
     HeaderComponent,
     FooterComponent
   },
+  created() {
+  },
+  mounted() {
+  },
+  updated() {
+  },
 
   async beforeCreate() {
     const respons = await axios.get('http://localhost:8080/auth/user');

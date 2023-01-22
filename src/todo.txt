@@ -1,0 +1,22 @@
+Header{
+div{
+row {
+cols {
+Titel
+Username (lins ecke)
+icon {
+login/logout
+}
+}
+}
+
+}
+
+
+Footer {
+}
+
+
+
+Login
+Regist
