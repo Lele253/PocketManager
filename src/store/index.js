@@ -4,6 +4,8 @@ export default createStore({
     state: {
         user: null,
         pageName: '',
+        color: '#d35cf1',
+        colorAktive: false
     },
     getters: {
         user: (state) => {
