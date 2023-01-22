@@ -8,11 +8,11 @@
         <v-form @submit.prevent="login">
 
         <v-row class="mt-10" justify="center">
-          <v-col cols="8">
+          <v-col cols="9">
             <v-text-field v-model="email" type="email" label="Username" variant="solo"></v-text-field>
 
           </v-col>
-          <v-col cols="8">
+          <v-col cols="9">
             <v-text-field v-model="password" type="password" label="Password" variant="solo"></v-text-field>
           </v-col>
           <v-col class=" d-flex justify-center mt-n4" cols="6">
@@ -78,6 +78,6 @@ export default {
 }
 .logincard{
   height: 450px;
-  width: 360px;
+  width: 340px;
 }
 </style>
