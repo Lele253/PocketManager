@@ -20,3 +20,7 @@ Footer {
 
 Login
 Regist
+
+
+Header and Footer Farben: rgba(189, 23, 23, 0.29)
+Backround-Image: https://i.pinimg.com/564x/a2/25/1e/a2251ecad7b405f57195e13e88da6d2e.jpg
