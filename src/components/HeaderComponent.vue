@@ -3,7 +3,7 @@
     <v-row class="headerow">
       <v-col cols="4" v-if="user" class="pb-0 d-flex align-center">{{user.username}}</v-col>
       <v-col cols="4" v-if="!user" class="pb-0 d-flex align-center">Welcome</v-col>
-      <v-col cols="4">{{test1}}</v-col>
+      <v-col cols="4">{{$store.state.test}}</v-col>
       <v-col cols="4"></v-col>
     </v-row>
   </div>
