@@ -2,6 +2,10 @@
   <v-app>
     <HeaderComponent></HeaderComponent>
     <v-main>
+      <v-img
+          class="hintergrund"
+          src="https://t3.ftcdn.net/jpg/00/81/06/90/360_F_81069058_EXmWsil0UGDIerabVlQwNjgiNA2kAHGF.jpg">
+      </v-img>
       <router-view class="router">
       </router-view>
     </v-main>
@@ -33,8 +37,15 @@ export default {
 }
 </script>
 <style scoped>
-.router{
+.router {
   margin-top: 60px;
   margin-bottom: 46px;
+}
+
+.hintergrund {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  
 }
 </style>

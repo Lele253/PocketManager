@@ -17,6 +17,7 @@ export default {
   position: fixed;
   z-index: 10;
   top: 95vh;
+  box-shadow: -2px 0px 5px;
 }
 
 </style>
