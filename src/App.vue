@@ -1,23 +1,23 @@
 <template>
   <v-app>
-    <HeaderComponent class="header"></HeaderComponent>
+    <HeaderComponent></HeaderComponent>
     <v-main>
-      <router-view>
+      <router-view class="router">
       </router-view>
     </v-main>
-    <FooterComponent class="footer"></FooterComponent>
+    <FooterComponent></FooterComponent>
   </v-app>
 </template>
 
 <script>
 import axios from "axios";
-import FooterComponent from "@/components/FooterComponent";
 import HeaderComponent from "@/components/HeaderComponent";
+import FooterComponent from "@/components/FooterComponent";
 
 export default {
   components: {
-    FooterComponent,
     HeaderComponent,
+    FooterComponent
   },
 
   async beforeCreate() {
@@ -26,5 +26,9 @@ export default {
   },
 }
 </script>
-<style>
+<style scoped>
+.router{
+  margin-top: 60px;
+  margin-bottom: 46px;
+}
 </style>

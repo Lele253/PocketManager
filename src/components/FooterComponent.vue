@@ -1,6 +1,5 @@
 <template>
   <div class="footer">
-
   </div>
 </template>
 
@@ -12,8 +11,12 @@ export default {
 
 <style scoped>
 .footer {
-  height: 40px;
+  width: 100%;
+  height: 46px;
   background-color: red;
+  position: fixed;
+  z-index: 10;
+  top: 93vh;
 }
 
 </style>
