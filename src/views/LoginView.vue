@@ -23,7 +23,7 @@
               Sie haben noch kein Account?
             </p>
             <p class="mt-2 text-center">
-              <router-link to="/registrieren">Dann registrieren Sie sich jetzt!</router-link>
+              <router-link to="/regist">Dann registrieren Sie sich jetzt!</router-link>
             </p>
           </v-col>
         </v-row>
