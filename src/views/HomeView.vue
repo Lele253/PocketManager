@@ -2,6 +2,22 @@
   <div>
     <!----------------------------------------angemeldet------------------------------------->
     <div v-if="user">
+      <div class="budget ">
+        <div class="d-flex">
+          <p class="ml-1 mt-1 text-white">{{budget}}</p>
+          <p class="ml-1 mt-1 text-white">€</p>
+        </div>
+        <div v-if="budgetBearbeiten">
+          <v-text-field type="number" variant="outlined" v-model="budgetPlus" class=" ml-1 mt-8 "></v-text-field>
+        </div>
+
+      </div>
+      <div v-if="!budgetBearbeiten" @click="budgetBearbeiten = !budgetBearbeiten" class="budgetAdd">
+        <h1 class="mt-n2 text-center text-white">+</h1>
+      </div>
+      <div v-if="budgetBearbeiten" @click="adieren" class="budgetAdd">
+        <h1 class="mt-n2 text-center text-white">+</h1>
+      </div>
       <!-- Farbpalette Dialog-->
       <div>
         <v-dialog
@@ -10,12 +26,14 @@
 
         >
           <template v-slot:activator="{ on, attrs }">
+            <div class="farbDiv">
             <Icon class="farbIcon"
                   @click="dialog = true" icon="cil:color-palette" v-bind="attrs"
                   v-on="on"/>
+            </div>
           </template>
           <v-card class="dialogCard">
-            <v-card-title class="text-h5">
+            <v-card-title class="text-h5 text-white">
               Wähle deine eigenen Farbe aus
             </v-card-title>
             <v-card-text>
@@ -101,6 +119,7 @@
           </v-card>
         </v-dialog>
       </div>
+
     </div>
 
 
@@ -199,13 +218,20 @@ export default {
 
   data() {
     return {
+      budgetPlus: 0,
       farbe: 'blue',
       name: 'Pocket Manager',
       dialog1: false,
       dialog: false,
+      budgetBearbeiten: false,
     }
   },
   methods: {
+    adieren(){
+     this.$store.state.budget = (+this.$store.state.budget) + (+this.budgetPlus)  ;
+      this.budgetBearbeiten = false
+     console.log(this.budget)
+    },
     getName() {
       this.$store.state.pageName = this.name
     }
@@ -214,8 +240,11 @@ export default {
     this.getName()
   },
   computed: {
-    ...mapGetters(['user'])
+    ...mapGetters(['user']),
+    ...mapGetters(['budget'])
+
   },
+
   components: {
     ColorComponent,
     Icon,
@@ -226,12 +255,12 @@ export default {
 
 .farbIcon {
   cursor: pointer;
-  font-size: 40px;
-  position: fixed;
+  font-size: 30px;
+  margin-left: 10px;
+  margin-bottom: 4px;
   z-index: 330;
-  left: 88%;
-  top: 80px;
-  color: #c20a0a;
+
+  color: white;
 }
 
 .addButton {
@@ -240,17 +269,21 @@ export default {
   border-radius: 100%;
   min-height: 120px;
   min-width: 120px;
-  top: 550px;
+  position: fixed;
+  top: 600px;
   left: 37%
 }
 
 .dialogCard {
   height: 400px;
   width: 350px;
+  background-color: black;
+  border-radius: 12px;
+  border:solid 3px white;
 }
 
 .closeB {
-  background-color: #039b03;
+  background-color: white;
 }
 
 .card {
@@ -291,5 +324,40 @@ export default {
   border-radius: 20px;
   color: white;
   background-color: black;
+}
+.budget{
+  position: relative;
+  top: 15px;
+  left: 20px;
+  height: 38px;
+  width: 90px;
+  background-color: black;
+  border: solid 3px white;
+  box-shadow: 3px 3px 5px black;
+  border-radius: 12px;
+}
+.budgetAdd{
+  position: relative;
+  top: -23px;
+  left: 115px;
+  height: 38px;
+  width: 45px;
+  background-color: black;
+  border: solid 3px white;
+  box-shadow: 3px 3px 5px black;
+  border-radius: 12px;
+}
+.farbDiv{
+  font-size: 40px;
+  position: relative;
+  z-index: 330;
+  left: 83%;
+  top: -64px;
+  height: 55px;
+  width: 55px;
+  background-color: black;
+  border: solid 3px white;
+  box-shadow: 3px 3px 5px black;
+  border-radius: 12px;
 }
 </style>
