@@ -34,24 +34,23 @@
         </v-card>
       </v-dialog>
       </div>
-
-      <!-- Hinzufügen Button -->
-      <div v-if="user" class="hidden-sm-and-up">
+      <!-- Hinzufügen Dialog -->
+      <div class="hidden-sm-and-up">
         <v-dialog
             v-model="dialog1"
             persistent
         >
           <template v-slot:activator="{ props }">
             <v-btn
-                style="top: 600px; left:45%"
+                class="addButton"
                 position="relative"
-                color="primary"
+                color="black"
                 v-bind="props"
             >
               Buy
             </v-btn>
           </template>
-          <v-card>
+          <v-card class="cardFarbe">
             <v-card-title class="text-center text-h5">
               Neue Ausgabe
             </v-card-title>
@@ -85,14 +84,14 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                  color="blue-darken-1"
+                  color="red"
                   variant="text"
                   @click="dialog1 = false"
               >
                 Schließen
               </v-btn>
               <v-btn
-                  color="blue-darken-1"
+                  color="green"
                   variant="text"
                   @click="dialog1 = false"
               >
@@ -149,6 +148,7 @@ export default {
 }
 </script>
 <style scoped>
+
 .farbIcon {
   cursor: pointer;
   font-size: 40px;
@@ -158,15 +158,14 @@ export default {
   top: 80px;
   color: #c20a0a;
 }
-
-.closeIcon {
-  cursor: pointer;
-  font-size: 40px;
-  position: fixed;
-  z-index: 330;
-  left: 88%;
-  top: 80px;
-  color: black;
+.addButton{
+  border: white solid ;
+  box-shadow: 2px 2px 5px black;
+  border-radius: 100%;
+  min-height: 120px;
+  min-width: 120px;
+  top: 550px;
+  left:37%
 }
 
 .dialogCard {
