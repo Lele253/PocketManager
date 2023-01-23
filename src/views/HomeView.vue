@@ -3,6 +3,7 @@
     <!----------------------------------------angemeldet------------------------------------->
     <div v-if="user">
       <!-- Farbpalette Dialog-->
+      <div>
       <v-dialog
           v-model="dialog"
           persistent
@@ -32,6 +33,7 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+      </div>
 
       <!-- Hinzufügen Button -->
       <div v-if="user" class="hidden-sm-and-up">
@@ -62,6 +64,7 @@
                       md="4"
                   >
                     <v-text-field
+                        variant="solo"
                         label="was hast du gekauft?"
                         required
                     ></v-text-field>
@@ -72,6 +75,7 @@
                       md="4"
                   >
                     <v-text-field
+                        variant="solo"
                         label="Preis"
                     ></v-text-field>
                   </v-col>
@@ -85,14 +89,14 @@
                   variant="text"
                   @click="dialog1 = false"
               >
-                Close
+                Schließen
               </v-btn>
               <v-btn
                   color="blue-darken-1"
                   variant="text"
                   @click="dialog1 = false"
               >
-                Save
+                Speichern
               </v-btn>
             </v-card-actions>
           </v-card>
