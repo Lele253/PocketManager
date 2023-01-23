@@ -64,7 +64,7 @@
                   >
                     <v-text-field
                         variant="solo"
-                        label="was hast du gekauft?"
+                        label="Was hast du gekauft?"
                         required
                     ></v-text-field>
                   </v-col>

@@ -8,7 +8,7 @@
         <Icon class="iconfooter" icon="pajamas:hamburger" />
       </v-col>
       <v-col class="d-flex justify-center align-center  ">
-        <Icon class="iconfooter" icon="mdi:checkbox-marked-circle-plus-outline" />
+        <Icon @click="$router.push('/kategorieAdd')" class="iconfooter" icon="mdi:checkbox-marked-circle-plus-outline" />
       </v-col>
       <v-col class="d-flex justify-center align-center  ">
         <Icon class="iconfooter" icon="healthicons:ui-user-profile" />
