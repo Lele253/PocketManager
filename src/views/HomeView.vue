@@ -159,8 +159,8 @@ export default {
   color: #c20a0a;
 }
 .addButton{
-  border: white solid ;
-  box-shadow: 2px 2px 5px black;
+  border: white 3px solid ;
+  box-shadow: 3px 3px 5px black;
   border-radius: 100%;
   min-height: 120px;
   min-width: 120px;
