@@ -16,7 +16,7 @@
             <v-text-field v-model="password" type="password" label="Password" variant="solo"></v-text-field>
           </v-col>
           <v-col class=" d-flex justify-center mt-n4" cols="6">
-            <v-btn type="submitç" class="button">Login </v-btn>
+            <v-btn type="submit" class="button">Login </v-btn>
           </v-col>
           <v-col cols="10">
             <p class="text-center">
