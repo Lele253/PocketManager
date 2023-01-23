@@ -2,11 +2,12 @@
   <!-- Farbpalette -->
   <div v-if="user">
 
+    <!-- Farbpalette Dialog-->
 
     <v-dialog
         v-model="dialog"
         persistent
-        max-width="290"
+
     >
       <template v-slot:activator="{ on, attrs }">
         <Icon class="farbIcon"
@@ -18,14 +19,13 @@
           Wähle deine eigenen Farbe aus
         </v-card-title>
         <v-card-text>
-          <ColorComponent style="position: absolute; z-index: 300;left: 13%; top: 100px;">
+          <ColorComponent >
           </ColorComponent>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-              class="button"
-              text
+              class="bg-green"
               @click="dialog = false"
           >
             Speichern
@@ -38,7 +38,7 @@
     <div v-if="user" class="hidden-sm-and-up">
       <v-row justify="center">
         <v-dialog
-            v-model="dialog"
+            v-model="dialog1"
             persistent
         >
           <template v-slot:activator="{ props }">
@@ -85,14 +85,14 @@
               <v-btn
                   color="blue-darken-1"
                   variant="text"
-                  @click="dialog = false"
+                  @click="dialog1 = false"
               >
                 Close
               </v-btn>
               <v-btn
                   color="blue-darken-1"
                   variant="text"
-                  @click="dialog = false"
+                  @click="dialog1 = false"
               >
                 Save
               </v-btn>
@@ -118,6 +118,7 @@ export default {
     return {
       farbe: 'blue',
       name: 'Pocket Manager',
+      dialog1: false,
       dialog: false,
     }
   },
@@ -161,10 +162,7 @@ export default {
 
 .dialogCard {
   height: 400px;
-  width: 400px;
+  width: 350px;
 }
 
-.button {
-  color: v-bind($store.state.color);
-}
 </style>
