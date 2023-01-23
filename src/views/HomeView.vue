@@ -4,7 +4,7 @@
     <div v-if="user">
       <div class="budget ">
         <div class="d-flex">
-          <p class="ml-1 mt-1 text-white">{{budget}}</p>
+          <p class="ml-1 mt-1 text-white">{{ budget }}</p>
           <p class="ml-1 mt-1 text-white">€</p>
         </div>
         <div v-if="budgetBearbeiten">
@@ -27,9 +27,9 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <div class="farbDiv">
-            <Icon class="farbIcon"
-                  @click="dialog = true" icon="cil:color-palette" v-bind="attrs"
-                  v-on="on"/>
+              <Icon class="farbIcon"
+                    @click="dialog = true" icon="cil:color-palette" v-bind="attrs"
+                    v-on="on"/>
             </div>
           </template>
           <v-card class="dialogCard">
@@ -130,7 +130,7 @@
         <!--Karten-->
         <v-row class="cardRow d-flex justify-center">
           <!--Karte 1-->
-          <v-col sm="8" cols="10">
+          <v-col sm="8" cols="12">
             <v-card class="cardOne ">
               <h2 class="text-center mt-5">
                 Was ist PocketManager
@@ -227,10 +227,10 @@ export default {
     }
   },
   methods: {
-    adieren(){
-     this.$store.state.budget = (+this.$store.state.budget) + (+this.budgetPlus)  ;
+    adieren() {
+      this.$store.state.budget = (+this.$store.state.budget) + (+this.budgetPlus);
       this.budgetBearbeiten = false
-     console.log(this.budget)
+      console.log(this.budget)
     },
     getName() {
       this.$store.state.pageName = this.name
@@ -279,7 +279,7 @@ export default {
   width: 350px;
   background-color: black;
   border-radius: 12px;
-  border:solid 3px white;
+  border: solid 3px white;
 }
 
 .closeB {
@@ -325,7 +325,8 @@ export default {
   color: white;
   background-color: black;
 }
-.budget{
+
+.budget {
   position: relative;
   top: 15px;
   left: 20px;
@@ -336,7 +337,8 @@ export default {
   box-shadow: 3px 3px 5px black;
   border-radius: 12px;
 }
-.budgetAdd{
+
+.budgetAdd {
   position: relative;
   top: -23px;
   left: 115px;
@@ -347,7 +349,8 @@ export default {
   box-shadow: 3px 3px 5px black;
   border-radius: 12px;
 }
-.farbDiv{
+
+.farbDiv {
   font-size: 40px;
   position: relative;
   z-index: 330;
