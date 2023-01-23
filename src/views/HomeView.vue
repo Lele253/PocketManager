@@ -1,59 +1,57 @@
 <template>
-  <!-- Farbpalette -->
-  <div v-if="user">
+  <div>
+    <!----------------------------------------angemeldet------------------------------------->
+    <div v-if="user">
+      <!-- Farbpalette Dialog-->
+      <v-dialog
+          v-model="dialog"
+          persistent
 
-    <!-- Farbpalette Dialog-->
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <Icon class="farbIcon"
+                @click="dialog = true" icon="cil:color-palette" v-bind="attrs"
+                v-on="on"/>
+        </template>
+        <v-card class="dialogCard">
+          <v-card-title class="text-h5">
+            Wähle deine eigenen Farbe aus
+          </v-card-title>
+          <v-card-text>
+            <ColorComponent >
+            </ColorComponent>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+                class="closeB"
+                @click="dialog = false"
+            >
+              Speichern
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
 
-    <v-dialog
-        v-model="dialog"
-        persistent
-
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <Icon class="farbIcon"
-              @click="dialog = true" icon="cil:color-palette" v-bind="attrs"
-              v-on="on"/>
-      </template>
-      <v-card class="dialogCard">
-        <v-card-title class="text-h5">
-          Wähle deine eigenen Farbe aus
-        </v-card-title>
-        <v-card-text>
-          <ColorComponent >
-          </ColorComponent>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-              class="closeB"
-              @click="dialog = false"
-          >
-            Speichern
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
-    <!-- Hinzufügen Button -->
-    <div v-if="user" class="hidden-sm-and-up">
-      <v-row justify="center">
+      <!-- Hinzufügen Button -->
+      <div v-if="user" class="hidden-sm-and-up">
         <v-dialog
             v-model="dialog1"
             persistent
         >
           <template v-slot:activator="{ props }">
             <v-btn
-                style="top: 600px"
+                style="top: 600px; left:45%"
                 position="relative"
                 color="primary"
                 v-bind="props"
             >
-              Open Dialog
+              Buy
             </v-btn>
           </template>
           <v-card>
             <v-card-title class="text-center text-h5">
-               Neue Ausgabe
+              Neue Ausgabe
             </v-card-title>
             <v-card-text>
               <v-container>
@@ -99,8 +97,15 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-      </v-row>
+      </div>
     </div>
+
+
+    <!----------------------------------------Abgemeldet------------------------------------->
+    <div v-if="!user">
+
+    </div>
+
   </div>
 
 </template>
