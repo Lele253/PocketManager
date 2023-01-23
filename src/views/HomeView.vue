@@ -25,7 +25,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-              class="bg-green"
+              class="closeB"
               @click="dialog = false"
           >
             Speichern
@@ -163,6 +163,9 @@ export default {
 .dialogCard {
   height: 400px;
   width: 350px;
+}
+.closeB{
+  background-color: #039b03;
 }
 
 </style>
