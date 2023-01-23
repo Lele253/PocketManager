@@ -24,6 +24,12 @@
           <v-col class=" d-flex jusPasswordter mt-n4" cols="6">
             <v-btn type="submitç" class="button">Registrieren </v-btn>
           </v-col>
+          <v-col cols="10">
+
+            <p class="mt-2 text-center">
+              <router-link to="/login">Zum Login</router-link>
+            </p>
+          </v-col>
         </v-row>
         </v-form>
       </v-card-tesx>
@@ -75,7 +81,7 @@ export default {
 
 }
 .registCard{
-  height: 450px;
+  height: 480px;
   width: 340px;
   background-color: rgba(255, 255, 255, 0.85);
 }
