@@ -1,7 +1,13 @@
 <template>
-  <div>
+  <!-- Farbpalette -->
+  <div v-if="user">
     <Icon class="farbIcon" @click="$store.state.colorAktive = !$store.state.colorAktive"  icon="cil:color-palette" />
     <ColorComponent style="position: absolute; z-index: 300;left: 13%; top: 100px;" v-if="$store.state.colorAktive"></ColorComponent>
+
+    <!-- Hinzufügen Button -->
+    <div v-if="user" class="hidden-sm-and-up">
+
+    </div>
   </div>
 
 </template>
@@ -11,6 +17,7 @@
 
 import ColorComponent from "@/components/ColorComponent";
 import { Icon } from '@iconify/vue';
+import {mapGetters} from "vuex";
 export default {
 
   data() {
@@ -27,7 +34,13 @@ export default {
   created() {
     this.getName()
   },
-  components: {ColorComponent,Icon,},
+  computed: {
+    ...mapGetters(['user'])
+  },
+  components: {
+    ColorComponent,
+    Icon,
+  },
 }
 </script>
 <style scoped>

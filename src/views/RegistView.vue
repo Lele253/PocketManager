@@ -6,7 +6,7 @@
       </v-card-title>
       <v-card-tesx>
         <v-form @submit.prevent="regist">
-        <v-row justify="center" class="mt-10">
+        <v-row justify="center" class="mt-6">
           <v-col cols="9">
             <v-text-field label="Username" v-model="username" type="text"  variant="solo">
             </v-text-field>
@@ -39,7 +39,7 @@ import {mapGetters} from "vuex";
 export default {
   data(){
     return{
-  name: "RegistView",
+      name: "RegistView",
       username:'',
       password:'',
       passwordW:'',

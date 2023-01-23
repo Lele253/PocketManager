@@ -23,7 +23,8 @@ import {mapGetters} from "vuex";
 export default {
   name: "HeaderComponent",
   data() {
-    return {}
+    return {
+    }
   },
   methods: {
     logout() {
