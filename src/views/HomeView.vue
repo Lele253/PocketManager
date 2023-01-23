@@ -192,7 +192,7 @@
                   </v-btn>
                 </v-col>
                 <v-col sm="5" cols="8">
-                  <v-btn class="button">
+                  <v-btn @click="$router.push('/login')" class="button">
                     Jetzt Anmelden!
                   </v-btn>
                 </v-col>
@@ -271,7 +271,7 @@ export default {
   min-width: 120px;
   position: fixed;
   top: 600px;
-  left: 37%
+  left: 37%;
 }
 
 .dialogCard {
@@ -311,6 +311,9 @@ export default {
   background-color: rgba(218, 163, 31, 0.82);
   height: 500px;
   text-shadow: 2px 2px 5px white;
+}
+.cardFarbe {
+  color: v-bind($state.store.color);
 }
 
 .tryItNowButtonDiv {
