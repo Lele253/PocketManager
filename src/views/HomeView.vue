@@ -4,35 +4,35 @@
     <div v-if="user">
       <!-- Farbpalette Dialog-->
       <div>
-      <v-dialog
-          v-model="dialog"
-          persistent
+        <v-dialog
+            v-model="dialog"
+            persistent
 
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <Icon class="farbIcon"
-                @click="dialog = true" icon="cil:color-palette" v-bind="attrs"
-                v-on="on"/>
-        </template>
-        <v-card class="dialogCard">
-          <v-card-title class="text-h5">
-            Wähle deine eigenen Farbe aus
-          </v-card-title>
-          <v-card-text>
-            <ColorComponent>
-            </ColorComponent>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-                class="closeB"
-                @click="dialog = false"
-            >
-              Speichern
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <Icon class="farbIcon"
+                  @click="dialog = true" icon="cil:color-palette" v-bind="attrs"
+                  v-on="on"/>
+          </template>
+          <v-card class="dialogCard">
+            <v-card-title class="text-h5">
+              Wähle deine eigenen Farbe aus
+            </v-card-title>
+            <v-card-text>
+              <ColorComponent>
+              </ColorComponent>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                  class="closeB"
+                  @click="dialog = false"
+              >
+                Speichern
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </div>
       <!-- Hinzufügen Dialog -->
       <div class="hidden-sm-and-up">
@@ -107,18 +107,35 @@
     <!----------------------------------------Abgemeldet------------------------------------->
     <div v-if="!user" style="width: 100%">
       <!--überschrift-->
-      <h2 class="text-center">
-        Was ist PocketManager
-      </h2>
-      <!--Karten-->
       <div>
-        <v-row class="justify-center">
+        <!--Karten-->
+        <v-row class="cardRow justify-center">
+          <!--Karte 1-->
+          <v-col cols="9">
+            <v-card class="card">
+              <h2 class="text-center">
+                Was ist PocketManager
+              </h2>
+              <p class="text-center mx-10">
+                Why it works: Type form simplifies their mobile website to improve load times and deliver a simpler user
+                experience.
+
+                Typeform is a Barcelona-based tech company with one simple mission: to "make forms awesome." Their
+                desktop
+                website is beautifully designed, greeting visitors with succinct copy, relevant animations, and other
+                complex
+                design components.
+              </p>
+            </v-card>
+          </v-col>
+          <!--Karte 2-->
           <v-col cols="9">
             <v-card class="card">
               <v-titel>
               </v-titel>
             </v-card>
           </v-col>
+          <!--Karte 3-->
           <v-col cols="9">
             <v-card class="card">
               <v-titel>
@@ -178,14 +195,15 @@ export default {
   top: 80px;
   color: #c20a0a;
 }
-.addButton{
-  border: white 3px solid ;
+
+.addButton {
+  border: white 3px solid;
   box-shadow: 3px 3px 5px black;
   border-radius: 100%;
   min-height: 120px;
   min-width: 120px;
   top: 550px;
-  left:37%
+  left: 37%
 }
 
 .dialogCard {
@@ -199,7 +217,13 @@ export default {
 
 .card {
   background-color: rgba(218, 163, 31, 0.6);
-  height: 300px
+  height: 500px;
+  text-shadow: 2px 2px 5px white;
 }
 
+.cardRow {
+  
+  height: 100%;
+
+}
 </style>

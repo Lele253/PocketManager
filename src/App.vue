@@ -5,7 +5,7 @@
       <v-img
           class="hintergrund"
           src="https://i.pinimg.com/564x/a2/25/1e/a2251ecad7b405f57195e13e88da6d2e.jpg">
-      <div class="schleier"  ></div>
+        <div class="schleier"></div>
       </v-img>
       <router-view class="router">
       </router-view>
@@ -49,12 +49,13 @@ export default {
   position: fixed;
   height: 100%;
   width: 100%;
-z-index: 8;
+  z-index: 8;
 }
-.schleier{
-width: 100% ;
-  height: 100% ;
-  background-color: rgba(0,0,0,0.28);
+
+.schleier {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.30);
   position: relative;
   z-index: 6;
 }
