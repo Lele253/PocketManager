@@ -313,7 +313,7 @@ export default {
   text-shadow: 2px 2px 5px white;
 }
 .cardFarbe {
-  color: v-bind($state.store.color);
+  color: v-bind($store.state.color);
 }
 
 .tryItNowButtonDiv {
