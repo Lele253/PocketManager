@@ -109,37 +109,75 @@
       <!--überschrift-->
       <div>
         <!--Karten-->
-        <v-row class="cardRow justify-center">
+        <v-row class="cardRow d-flex justify-center">
           <!--Karte 1-->
-          <v-col cols="9">
-            <v-card class="card">
-              <h2 class="text-center">
+          <v-col sm="8" cols="10">
+            <v-card class="cardOne ">
+              <h2 class="text-center mt-5">
                 Was ist PocketManager
               </h2>
-              <p class="text-center mx-10">
-                Why it works: Type form simplifies their mobile website to improve load times and deliver a simpler user
-                experience.
-
-                Typeform is a Barcelona-based tech company with one simple mission: to "make forms awesome." Their
-                desktop
-                website is beautifully designed, greeting visitors with succinct copy, relevant animations, and other
-                complex
-                design components.
-              </p>
+              <h3 class="text-center mx-5 mt-3">
+                PocketManager ist die Lösung für alle, die ihre Ausgaben besser verwalten möchten. Mit unserer
+                benutzerfreundlichen Plattform können Sie Ihre Einkäufe und Ausgaben einfach verfolgen und organisieren.
+                Unsere App ermöglicht es Ihnen, Ihre Ausgaben in verschiedene Kategorien einzuteilen, damit Sie immer
+                den Überblick behalten und Ihr Budget besser planen können.
+                Verwalten Sie Ihre Ausgaben mit PocketManager und erreichen Sie Ihre finanziellen Ziele noch schneller.
+                Probieren Sie es jetzt aus und sehen Sie selbst!
+              </h3>
+              <div class="tryItNowButtonDiv mb-5">
+                <v-btn @click="$router.push('/regist')" class="button">
+                  Try it now
+                </v-btn>
+              </div>
             </v-card>
           </v-col>
           <!--Karte 2-->
-          <v-col cols="9">
+          <v-col sm="8" cols="10">
             <v-card class="card">
               <v-titel>
               </v-titel>
             </v-card>
           </v-col>
           <!--Karte 3-->
-          <v-col cols="9">
+          <v-col sm="8" cols="10">
             <v-card class="card">
               <v-titel>
               </v-titel>
+            </v-card>
+          </v-col>
+          <!--Karte 4-->
+          <v-col sm="8" cols="10">
+            <v-card class="cardLast text-center">
+              <h2 class="mt-5">
+                Haben Sie sich schon Registriert?
+              </h2>
+              <h3 class="mt-3 mx-10">
+                Sind Sie bereit, Ihre Ausgaben besser zu verwalten? Haben Sie sich schon registriert? Wenn nicht,
+                registrieren Sie sich jetzt und erhalten Sie Zugriff auf alle Funktionen unserer Plattform.
+              </h3>
+              <h3 class="hidden-xs mx-10 mt-10">
+                Einmal registriert, können Sie Ihre Ausgaben in verschiedene Kategorien einordnen und damit immer den
+                Überblick
+                behaten und Ihr Budget besser planen.
+              </h3>
+              <h3 class="hidden-sm-and-down mx-10 mt-10">
+                PocketManager ist einfach und sicher zu bedienen. Sie können die App auf Ihrem Smartphone oder Tablet
+                herunterladen und sie jederzeit und überall verwenden. Registrieren Sie sich jetzt und starten Sie
+                noch heute mit der Verwaltung Ihrer Ausgaben mit PocketManager. Erreichen Sie Ihre finanziellen Ziele
+                noch schneller.
+              </h3>
+              <v-row class="d-flex justify-center mt-8">
+                <v-col sm="5" cols="8">
+                  <v-btn class="button">
+                    Jetzt Registrieren!
+                  </v-btn>
+                </v-col>
+                <v-col sm="5" cols="8">
+                  <v-btn class="button">
+                    Jetzt Anmelden!
+                  </v-btn>
+                </v-col>
+              </v-row>
             </v-card>
           </v-col>
         </v-row>
@@ -216,15 +254,42 @@ export default {
 }
 
 .card {
-  background-color: rgba(218, 163, 31, 0.6);
+  /*background-color: rgba(218, 163, 31, 0.6);*/
+  background-color: rgba(218, 163, 31, 0.82);
   height: 500px;
   text-shadow: 2px 2px 5px white;
 }
 
 .cardRow {
   margin-top: 35px;
+  padding-left: 5%;
   width: 100%;
   height: 100%;
+}
 
+.cardOne {
+  background-color: rgba(218, 163, 31, 0.82);
+
+  text-shadow: 2px 2px 5px white;
+}
+
+.cardLast {
+  /*background-color: rgba(218, 163, 31, 0.6);*/
+  background-color: rgba(218, 163, 31, 0.82);
+  height: 500px;
+  text-shadow: 2px 2px 5px white;
+}
+
+.tryItNowButtonDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.button {
+  border: solid 3px white;
+  border-radius: 20px;
+  color: white;
+  background-color: black;
 }
 </style>

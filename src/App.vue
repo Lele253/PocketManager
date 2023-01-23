@@ -41,7 +41,7 @@ export default {
 .router {
   position: relative;
   margin-top: 60px;
-  margin-bottom: 46px;
+  margin-bottom: 80px;
   z-index: 10;
 }
 
@@ -55,7 +55,7 @@ export default {
 .schleier {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.30);
+  background-color: rgba(0, 0, 0, 0.40);
   position: relative;
   z-index: 6;
 }
