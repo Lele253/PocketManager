@@ -187,7 +187,7 @@
               </h3>
               <v-row class="d-flex justify-center mt-8">
                 <v-col sm="5" cols="8">
-                  <v-btn class="button">
+                  <v-btn @click="$router.push('/regist')" class="button">
                     Jetzt Registrieren!
                   </v-btn>
                 </v-col>
