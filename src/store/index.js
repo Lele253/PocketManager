@@ -5,9 +5,14 @@ export default createStore({
         user: null,
         pageName: '',
         color: '#daa31f',
-        colorAktive: false
+        colorAktive: false,
+        budget: 0,
     },
     getters: {
+        budget: (state) =>{
+            return state.budget
+
+        },
         user: (state) => {
             return state.user
         }
@@ -15,11 +20,17 @@ export default createStore({
     mutations: {
         user(state, user) {
             state.user = user
+        },
+        budget(state, budget) {
+            state.budget = budget
         }
     },
     actions: {
         user(context, user) {
             context.commit('user', user)
+        },
+        budget(context, budget) {
+            context.commit('budget', budget)
         }
     },
     modules: {}
