@@ -79,5 +79,6 @@ export default {
 .logincard{
   height: 450px;
   width: 340px;
+  background-color: rgba(255, 255, 255, 0.85);
 }
 </style>

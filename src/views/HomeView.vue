@@ -19,7 +19,7 @@
             Wähle deine eigenen Farbe aus
           </v-card-title>
           <v-card-text>
-            <ColorComponent >
+            <ColorComponent>
             </ColorComponent>
           </v-card-text>
           <v-card-actions>
@@ -105,8 +105,28 @@
 
 
     <!----------------------------------------Abgemeldet------------------------------------->
-    <div v-if="!user">
-
+    <div v-if="!user" style="width: 100%">
+      <!--überschrift-->
+      <h2 class="text-center">
+        Was ist PocketManager
+      </h2>
+      <!--Karten-->
+      <div>
+        <v-row class="justify-center">
+          <v-col cols="9">
+            <v-card class="card">
+              <v-titel>
+              </v-titel>
+            </v-card>
+          </v-col>
+          <v-col cols="9">
+            <v-card class="card">
+              <v-titel>
+              </v-titel>
+            </v-card>
+          </v-col>
+        </v-row>
+      </div>
     </div>
 
   </div>
@@ -172,8 +192,14 @@ export default {
   height: 400px;
   width: 350px;
 }
-.closeB{
+
+.closeB {
   background-color: #039b03;
+}
+
+.card {
+  background-color: rgba(218, 163, 31, 0.6);
+  height: 300px
 }
 
 </style>
