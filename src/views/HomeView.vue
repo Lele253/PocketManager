@@ -127,7 +127,7 @@
     <div style="max-width: 98%" v-if="user" class="hidden-xs d-flex justify-center">
 <!--      Container Kategorien-->
       <v-row style="width: 100%" class="d-flex justify-center ml-1">
-        <v-col cols="5" class="v-colTabletAnsicht">
+        <v-col cols="5" class="ml-7 v-colTabletAnsicht">
 <!--          Überschrift Kategorientabelle-->
           <h2><u>Kategorien der Ausgaben</u></h2>
 
@@ -155,12 +155,12 @@
           </v-row>
         </v-col>
 <!--        Hilfscol für Spalt in der Mitte-->
-        <v-col cols="1"></v-col>
-        <v-col cols="5" class="v-colTabletAnsicht">
+        <v-spacer></v-spacer>
+        <v-col cols="5" class="mr-5 v-colTabletAnsicht">
 <!--          Überschrift Ausgaben-->
           <h2><u>Mobil hinzugefügte Ausgaben</u></h2>
 
-<!--Überschriftstupel Ausgaben-->
+<!-------------Überschriftstupel Ausgaben-->
 
           <v-row class="mr-2 mt-3 justify-center d-flex"
                   style="font-size: 15px">
@@ -320,7 +320,6 @@ export default {
     adieren() {
       this.$store.state.budget = (+this.$store.state.budget) + (+this.budgetPlus);
       this.budgetBearbeiten = false
-      console.log(this.budget)
     },
     getName() {
       this.$store.state.pageName = this.name
