@@ -141,14 +141,14 @@
 <!--         KategorienRow-->
           <v-row class="tupelKategorieDiv mt-n3">
 <!--            Inhalt KategorienRow-->
-            <v-col cols="12" v-for="i in kategorie" :key="i" >
+            <v-col cols="12" v-for="(i,index) in kategorie" :key="i" >
             <v-row class="text-black">
               <v-col cols="3"> {{ i.kategorieName }} </v-col>
               <v-col cols="3"> {{ i.kategorieBudget }} </v-col>
 <!--              ausgegeben-->
-              <v-col cols="3"> {{}} </v-col>
-<!--              offen-->53
-              <v-col cols="3"> {{ }} </v-col>
+              <v-col cols="3"> {{zwischensumme[index]}}</v-col>
+<!--              offen-->
+              <v-col cols="3"> {{ i.kategorieBudget - zwischensumme[index]}} </v-col>
             </v-row>
               <v-divider></v-divider>
             </v-col>
@@ -296,12 +296,12 @@ export default {
             {ausgabeID:4,ausgabeName:'NewYorker', ausgabePreis:15.00, ausgabeDatum:'26.01.2023'}
           ]
           },
-        {kategorieID:3,kategorieName:'Auto', kategorieBudget:200, ausgabe:[]},
-        {kategorieID:4,kategorieName:'Einkaufen', kategorieBudget:200, ausgabe:[]},
-        {kategorieID:5,kategorieName:'Trinken', kategorieBudget:200, ausgabe:[]},
-        {kategorieID:6,kategorieName:'Freizeit', kategorieBudget:200, ausgabe:[]},
-        {kategorieID:7,kategorieName:'Schule', kategorieBudget:200, ausgabe:[]},
-        {kategorieID:8,kategorieName:'Abos', kategorieBudget:200, ausgabe:[]},
+        {kategorieID:3,kategorieName:'Auto', kategorieBudget:200, ausgabe:[ {ausgabeID:5,ausgabeName:'NewYorker', ausgabePreis:22.00, ausgabeDatum:'26.01.2023'}]},
+        {kategorieID:4,kategorieName:'Einkaufen', kategorieBudget:200, ausgabe:[ {ausgabeID:6,ausgabeName:'NewYorker', ausgabePreis:11.00, ausgabeDatum:'26.01.2023'}]},
+        {kategorieID:5,kategorieName:'Trinken', kategorieBudget:200, ausgabe:[ {ausgabeID:7,ausgabeName:'NewYorker', ausgabePreis:13.00, ausgabeDatum:'26.01.2023'}]},
+        {kategorieID:6,kategorieName:'Freizeit', kategorieBudget:200, ausgabe:[ {ausgabeID:8,ausgabeName:'NewYorker', ausgabePreis:8.00, ausgabeDatum:'26.01.2023'}]},
+        {kategorieID:7,kategorieName:'Schule', kategorieBudget:200, ausgabe:[ {ausgabeID:9,ausgabeName:'NewYorker', ausgabePreis:7.00, ausgabeDatum:'26.01.2023'}]},
+        {kategorieID:8,kategorieName:'Abos', kategorieBudget:200, ausgabe:[ {ausgabeID:10,ausgabeName:'NewYorker', ausgabePreis:66.00, ausgabeDatum:'26.01.2023'}]},
           ],
       ausgabeGekauft: [
           {ausgabeID: 5,ausgabeName: 'Megges', ausgabePreis: 3.50, ausgabeDatum: '24.01.2023'},
@@ -329,7 +329,7 @@ export default {
     ausgegebenesBudget() {
       for(let i=0; i<this.kategorie.length; i++) {
         this.kategorienZwischensumme = 0;
-        for (let x=0; x<this.kategorie.ausgabe.length; i++) {
+        for (let x=0; x<this.kategorie[i].ausgabe.length; x++) {
           this.kategorienZwischensumme =  (+this.kategorienZwischensumme)+(+this.kategorie[i].ausgabe[x].ausgabePreis)
         }
         this.zwischensumme.push(this.kategorienZwischensumme)
@@ -339,6 +339,10 @@ export default {
   created() {
     this.getName()
     // this.ausgegebenesBudget()
+  },
+  beforeMount() {
+    console.log(this.kategorie)
+
   },
   mounted() {
     this.ausgegebenesBudget()
