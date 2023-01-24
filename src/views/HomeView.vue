@@ -23,7 +23,6 @@
         <v-dialog
             v-model="dialog"
             persistent
-
         >
           <template v-slot:activator="{ on, attrs }">
             <div class="farbDiv">
@@ -122,6 +121,64 @@
 
     </div>
 
+    <!----------------------------------------AngemeldetTabletAnsicht------------------------>
+    <div v-if="user" class="hidden-xs">
+      <v-row class="d-flex justify-center mx-10">
+        <v-col class="mr-5 v-colTabletAnsicht">
+          <h2><u>Kategorien der Ausgaben</u></h2>
+          <v-list class="listInhaltkategorien">
+            <v-list-item v-for="i in kategorie" :key="i">
+<!--              <v-row>-->
+<!--                <v-col cols="5">-->
+<!--                  <h3>{{i.kategorieName}}</h3>-->
+<!--                </v-col>-->
+<!--                <v-col cols="5">-->
+<!--                  <h3>{{i.kategorieBudget}}</h3>-->
+<!--                </v-col>-->
+<!--                <v-col>-->
+<!--                  {{i.ausgabe}}}-->
+<!--                </v-col>-->
+<!--              </v-row>-->
+
+
+            </v-list-item>
+
+            <v-table>
+              <thead>
+              <tr>
+                <th class="text-left">
+                  Kategorie
+                </th>
+                <th class="text-left">
+                  Budget
+                </th>
+                <th class="text-left">
+                  offen
+                </th>
+                <th class="text-left">
+                  ausgegeben
+                  {{kategorie[0].kategorieName}}
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr
+                  v-for="i in kategorie"
+                  :key="i"
+              >
+<!--                <td>{{ kategorie[i].kategorieName }}</td>-->
+              </tr>
+              </tbody>
+            </v-table>
+
+          </v-list>
+        </v-col>
+        <v-col class="ml-5 v-colTabletAnsicht">
+          <h2><u>Mobil hinzugefügte Ausgaben</u></h2>
+        </v-col>
+      </v-row>
+    </div>
+
 
     <!----------------------------------------Abgemeldet------------------------------------->
     <div v-if="!user" style="width: 100%">
@@ -142,6 +199,7 @@
                 den Überblick behalten und Ihr Budget besser planen können.
                 Verwalten Sie Ihre Ausgaben mit PocketManager und erreichen Sie Ihre finanziellen Ziele noch schneller.
                 Probieren Sie es jetzt aus und sehen Sie selbst!
+
               </h3>
               <div class="tryItNowButtonDiv mb-5">
                 <v-btn @click="$router.push('/regist')" class="button">
@@ -215,7 +273,6 @@ import {Icon} from '@iconify/vue';
 import {mapGetters} from "vuex";
 
 export default {
-
   data() {
     return {
       budgetPlus: 0,
@@ -224,6 +281,20 @@ export default {
       dialog1: false,
       dialog: false,
       budgetBearbeiten: false,
+      kategorie: [
+          {kategorieID:1,kategorieName:'Essen', kategorieBudget:200,
+            ausgabe:[
+                {ausgabeID:1,ausgabenname:'Megges', ausgabePreis:1.50, ausgabeDatum:'23.01.2023'},
+                {ausgabeID:2,ausgabenname:'BurgerKing', ausgabePreis:2.00, ausgabeDatum:'24.01.2023'}
+            ]
+          },
+        {kategorieID:2,kategorieName:'Shoppen', kategorieBudget:150,
+          ausgabe:[
+            {ausgabeID:3,ausgabenname:'Zara', ausgabePreis:33.00, ausgabeDatum:'25.01.2023'},
+            {ausgabeID:4,ausgabenname:'NewYorker', ausgabePreis:15.00, ausgabeDatum:'26.01.2023'}
+          ]
+        }
+          ],
     }
   },
   methods: {
@@ -365,5 +436,13 @@ export default {
   border: solid 3px white;
   box-shadow: 3px 3px 5px black;
   border-radius: 12px;
+}
+.v-colTabletAnsicht {
+  background-color: v-bind($store.state.color);
+  min-height: 500px;
+  text-align: center;
+}
+.listInhaltkategorien {
+  background-color: v-bind($store.state.color);
 }
 </style>
