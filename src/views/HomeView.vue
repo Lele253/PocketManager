@@ -167,7 +167,6 @@
             <v-col cols="6"> <h3>Name</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
             <v-col cols="6"> <h3>Preis</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
           </v-row>
-
           <!--         AusgabenRow-->
           <v-row class="tupelKategorieDiv mt-n3">
             <!--            Inhalt AusgabenRow-->
