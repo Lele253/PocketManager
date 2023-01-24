@@ -171,7 +171,7 @@
           <v-row class="tupelKategorieDiv mt-n3">
             <!--            Inhalt AusgabenRow-->
             <v-col cols="12" v-for="i in ausgabeGekauft" :key="i">
-              <v-row class="d-flex justify-center text-black">
+              <v-row draggable="true" class="d-flex justify-center text-black">
                 <v-col cols="6"> {{ i.ausgabeName }} </v-col>
                 <v-col cols="6"> {{ i.ausgabePreis}} € </v-col>
               </v-row>
@@ -482,7 +482,7 @@ export default {
 }
 .tupelKategorieDiv {
   margin-top: 20px;
-  background-color: rgba(0, 0, 0, 0.20);
+  background-color: rgba(250, 248, 248, 0.2);
   color: white;
   /*border: solid 3px white;*/
   /*border-radius: 10px;*/
