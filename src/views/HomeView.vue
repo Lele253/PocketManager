@@ -135,8 +135,8 @@
           <v-row class="mr-2 mt-3 justify-center d-flex">
             <v-col cols="3"> <h3>Kategorie</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
             <v-col cols="3"> <h3>Budget</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
-            <v-col cols="3"> <h3>offen</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
             <v-col cols="3"> <h3>ausgegeben</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
+            <v-col cols="3"> <h3>offen</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
           </v-row>
 <!--         KategorienRow-->
           <v-row class="tupelKategorieDiv mt-n3">
@@ -145,8 +145,10 @@
             <v-row class="text-black">
               <v-col cols="3"> {{ i.kategorieName }} </v-col>
               <v-col cols="3"> {{ i.kategorieBudget }} </v-col>
-              <v-col cols="3"> {{i.kategorieBudget}} </v-col>
+<!--              ausgegeben-->
               <v-col cols="3"> {{}} </v-col>
+<!--              offen-->53
+              <v-col cols="3"> {{ }} </v-col>
             </v-row>
               <v-divider></v-divider>
             </v-col>
@@ -171,8 +173,8 @@
             <!--            Inhalt AusgabenRow-->
             <v-col cols="12" v-for="i in ausgabeGekauft" :key="i">
               <v-row class="d-flex justify-center text-black">
-                <v-col cols="6"> {{ i.nameGekauft }} </v-col>
-                <v-col cols="6"> {{ i.preisGekauft }} € </v-col>
+                <v-col cols="6"> {{ i.ausgabeName }} </v-col>
+                <v-col cols="6"> {{ i.ausgabePreis}} € </v-col>
               </v-row>
               <v-divider></v-divider>
             </v-col>
@@ -213,15 +215,11 @@
           <!--Karte 2-->
           <v-col sm="8" cols="10">
             <v-card class="card">
-              <v-titel>
-              </v-titel>
             </v-card>
           </v-col>
           <!--Karte 3-->
           <v-col sm="8" cols="10">
             <v-card class="card">
-              <v-titel>
-              </v-titel>
             </v-card>
           </v-col>
           <!--Karte 4-->
@@ -283,17 +281,19 @@ export default {
       dialog1: false,
       dialog: false,
       budgetBearbeiten: false,
+      zwischensumme: [],
+      kategorienZwischensumme: 0,
       kategorie: [
           {kategorieID:1,kategorieName:'Essen', kategorieBudget:200,
             ausgabe:[
-                {ausgabeID:1,ausgabenName:'Megges', ausgabePreis:1.50, ausgabeDatum:'23.01.2023'},
-                {ausgabeID:2,ausgabenName:'BurgerKing', ausgabePreis:2.00, ausgabeDatum:'24.01.2023'}
+                {ausgabeID:1,ausgabeName:'Megges', ausgabePreis:1.50, ausgabeDatum:'23.01.2023'},
+                {ausgabeID:2,ausgabeName:'BurgerKing', ausgabePreis:2.00, ausgabeDatum:'24.01.2023'}
             ]
           },
           {kategorieID:2,kategorieName:'Shoppen', kategorieBudget:150,
           ausgabe:[
-            {ausgabeID:3,ausgabenName:'Zara', ausgabePreis:33.00, ausgabeDatum:'25.01.2023'},
-            {ausgabeID:4,ausgabenName:'NewYorker', ausgabePreis:15.00, ausgabeDatum:'26.01.2023'}
+            {ausgabeID:3,ausgabeName:'Zara', ausgabePreis:33.00, ausgabeDatum:'25.01.2023'},
+            {ausgabeID:4,ausgabeName:'NewYorker', ausgabePreis:15.00, ausgabeDatum:'26.01.2023'}
           ]
           },
         {kategorieID:3,kategorieName:'Auto', kategorieBudget:200, ausgabe:[]},
@@ -304,16 +304,16 @@ export default {
         {kategorieID:8,kategorieName:'Abos', kategorieBudget:200, ausgabe:[]},
           ],
       ausgabeGekauft: [
-          {gekauftID: 1,nameGekauft: 'Megges', preisGekauft: 3.50},
-          {gekauftID: 2,nameGekauft: 'BurgerKing', preisGekauft: 4},
-          {gekauftID: 3,nameGekauft: 'Zara', preisGekauft: 11.50},
-          {gekauftID: 4,nameGekauft: 'Edeka', preisGekauft: 4.75},
-          {gekauftID: 5,nameGekauft: 'Rewe', preisGekauft: 1.25},
-          {gekauftID: 6,nameGekauft: 'Eis', preisGekauft: 1.50},
-          {gekauftID: 7,nameGekauft: 'Cola', preisGekauft: 1.15},
-          {gekauftID: 8,nameGekauft: 'Tanken', preisGekauft: 67.64},
-          {gekauftID: 9,nameGekauft: 'Öl', preisGekauft: 20},
-          {gekauftID: 10,nameGekauft: 'Megges', preisGekauft: 1.25},
+          {ausgabeID: 5,ausgabeName: 'Megges', ausgabePreis: 3.50, ausgabeDatum: '24.01.2023'},
+          {ausgabeID: 6,ausgabeName: 'BurgerKing', ausgabePreis: 4, ausgabeDatum: '24.01.2023'},
+          {ausgabeID: 7,ausgabeName: 'Zara', ausgabePreis: 11.50, ausgabeDatum: '24.01.2023'},
+          {ausgabeID: 8,ausgabeName: 'Edeka', ausgabePreis: 4.75, ausgabeDatum: '24.01.2023'},
+          {ausgabeID: 9,ausgabeName: 'Rewe', ausgabePreis: 1.25, ausgabeDatum: '24.01.2023'},
+          {ausgabeID: 10,ausgabeName: 'Eis', ausgabePreis: 1.50, ausgabeDatum: '24.01.2023'},
+          {ausgabeID: 11,ausgabeName: 'Cola', ausgabePreis: 1.15, ausgabeDatum: '24.01.2023'},
+          {ausgabeID: 12,ausgabeName: 'Tanken', ausgabePreis: 67.64, ausgabeDatum: '24.01.2023'},
+          {ausgabeID: 13,ausgabeName: 'Öl', ausgabePreis: 20, ausgabeDatum: '24.01.2023'},
+          {ausgabeID: 14,ausgabeName: 'Megges', ausgabePreis: 1.25, ausgabeDatum: '24.01.2023'},
       ]
     }
   },
@@ -326,19 +326,22 @@ export default {
     getName() {
       this.$store.state.pageName = this.name
     },
-    // ausgegebenesBudget(kategorieID) {
-    //   let ausgabe= 0;
-    //         for(var i in this.kategorie) {
-    //     ausgabe += this.kategorie[kategorieID].ausgabe[i].ausgabePreis
-    //   }
-    //   return {
-    //     ausgabe
-    //   }
-    // }
+    ausgegebenesBudget() {
+      for(let i=0; i<this.kategorie.length; i++) {
+        this.kategorienZwischensumme = 0;
+        for (let x=0; x<this.kategorie.ausgabe.length; i++) {
+          this.kategorienZwischensumme =  (+this.kategorienZwischensumme)+(+this.kategorie[i].ausgabe[x].ausgabePreis)
+        }
+        this.zwischensumme.push(this.kategorienZwischensumme)
+      }
+    }
   },
   created() {
     this.getName()
     // this.ausgegebenesBudget()
+  },
+  mounted() {
+    this.ausgegebenesBudget()
   },
   computed: {
     ...mapGetters(['user']),
@@ -483,17 +486,9 @@ export default {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-.table-container {
-  display: flex;
-  justify-content: center;
-}
 
 table {
   margin: 0 auto;
-}
-
-.spacer {
-  width: 10px;
 }
 </style>
 

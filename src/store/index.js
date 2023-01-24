@@ -2,8 +2,8 @@ import {createStore} from 'vuex'
 
 export default createStore({
     state: {
-        user: {"nutzerId": 1, "username": "admin"},
-        // user: null,
+        // user: {"nutzerId": 1, "username": "admin"},
+        user: null,
         pageName: '',
         color: '#daa31f',
         colorAktive: false,
