@@ -124,73 +124,48 @@
     </div>
 
     <!----------------------------------------AngemeldetTabletAnsicht------------------------>
-    <div v-if="user" class="hidden-xs">
-      <v-row class="d-flex justify-center mx-10">
-        <v-col class="mr-5 v-colTabletAnsicht">
+    <div style="max-width: 98%" v-if="user" class="hidden-xs d-flex justify-center">
+<!--      Container Kategorien-->
+      <v-row style="width: 100%" class="d-flex justify-center ml-1">
+        <v-col cols="5" class="v-colTabletAnsicht">
+<!--          Überschrift Kategorientabelle-->
           <h2><u>Kategorien der Ausgaben</u></h2>
-          <v-list class="listInhaltkategorien">
-            <v-table class="tupelKategorieDiv">
-              <thead>
-              <tr>
-                <th class="text-left text-white tupelKategorie">
-                 Kategorie
-                </th>
-                <th class="text-left text-white tupelKategorie">
-                  Budget
-                </th>
-                <th class="text-left text-white tupelKategorie">
-                  offen
-                </th>
-                <th class="text-left text-white tupelKategorie">
-                  ausgegeben
-                </th>
-              </tr>
-              </thead>
-            </v-table>
-            <v-list-item v-for="i in kategorie" :key="i">
-<!--              <v-row>-->
-<!--                <v-col cols="5">-->
-<!--                  <h3>{{i.kategorieName}}</h3>-->
-<!--                </v-col>-->
-<!--                <v-col cols="5">-->
-<!--                  <h3>{{i.kategorieBudget}}</h3>-->
-<!--                </v-col>-->
-<!--                <v-col>-->
-<!--                  {{i.ausgabe}}}-->
-<!--                </v-col>-->
-<!--              </v-row>-->
-            <v-table>
-              <thead>
-              <tr>
-                <th class="text-left">
-                  {{i.kategorieName}}
-                </th>
-                <th class="text-left">
-                  Budget
-                </th>
-                <th class="text-left">
-                  offen
-                </th>
-                <th class="text-left">
-                  ausgegeben
-                  {{kategorie[0].kategorieName}}
-                </th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr
-                  v-for="i in kategorie"
-                  :key="i"
-              >
-<!--                <td>{{ kategorie[i].kategorieName }}</td>-->
-              </tr>
-              </tbody>
-            </v-table>
-            </v-list-item>
-          </v-list>
+
+          <!--Überschirftstupel Kategorien-->
+          <v-row class="tupelKategorieDiv">
+            <v-col cols="3"> Kategorie </v-col>
+            <v-col cols="3"> Budget </v-col>
+            <v-col cols="3"> offen </v-col>
+            <v-col cols="3"> ausgegeben </v-col>
+          </v-row>
+
+<!--         KategorienRow-->
+          <v-row class="tupelKategorieDiv">
+<!--            Inhalt KategorienRow-->
+            <v-col cols="12" v-for="i in kategorie" :key="i">
+            <v-row>
+              <v-col cols="3"> {{ i.kategorieName }} </v-col>
+              <v-col cols="3"> {{ i.kategorieBudget }} </v-col>
+              <v-col cols="3"> {{}} </v-col>
+              <v-col cols="3"> {{}} </v-col>
+            </v-row>
+            </v-col>
+          </v-row>
+
+
         </v-col>
-        <v-col class="ml-5 v-colTabletAnsicht">
+<!--        Hilfscol für Spalt in der Mitte-->
+        <v-col cols="1"></v-col>
+        <v-col cols="5" class="v-colTabletAnsicht">
+<!--          Überschrift Ausgaben-->
           <h2><u>Mobil hinzugefügte Ausgaben</u></h2>
+
+<!--Überschriftstupel Ausgaben-->
+          <v-row class="tupelKategorieDiv d-flex justify-center">
+            <v-col cols="5"> Gekauft </v-col>
+            <v-col cols="5"> Preis </v-col>
+          </v-row>
+
         </v-col>
       </v-row>
     </div>
@@ -456,7 +431,9 @@ export default {
 .v-colTabletAnsicht {
   background-color: v-bind($store.state.color);
   min-height: 500px;
+  min-width: 450px;
   text-align: center;
+  border-radius: 15px;
 }
 .listInhaltkategorien {
   background-color: v-bind($store.state.color);
@@ -465,7 +442,23 @@ export default {
   background-color: black;
 }
 .tupelKategorieDiv {
+  margin-top: 20px;
+  background-color: black;
+  color: white;
   border: solid 3px white;
   border-radius: 12px;
 }
+.table-container {
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  margin: 0 auto;
+}
+
+.spacer {
+  width: 10px;
+}
 </style>
+
