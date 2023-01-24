@@ -16,7 +16,9 @@
         <h1 class="mt-n2 text-center text-white">+</h1>
       </div>
       <div v-if="budgetBearbeiten" @click="adieren" class="budgetAdd">
-        <h1 class="mt-n2 text-center text-white">+</h1>
+        <h1 class="mt-n2 text-center text-white">
+          <Icon class="mt-1" style="font-size: 40px" icon="material-symbols:check-small" />
+        </h1>
       </div>
       <!-- Farbpalette Dialog-->
       <div>
