@@ -66,6 +66,7 @@ export default {
       else{
         alert('Password stimmt nicht überein')
       }
+      location.reload();
     }
   },
   computed: {

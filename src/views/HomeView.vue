@@ -129,6 +129,24 @@
         <v-col class="mr-5 v-colTabletAnsicht">
           <h2><u>Kategorien der Ausgaben</u></h2>
           <v-list class="listInhaltkategorien">
+            <v-table class="tupelKategorieDiv">
+              <thead>
+              <tr>
+                <th class="text-left text-white tupelKategorie">
+                 Kategorie
+                </th>
+                <th class="text-left text-white tupelKategorie">
+                  Budget
+                </th>
+                <th class="text-left text-white tupelKategorie">
+                  offen
+                </th>
+                <th class="text-left text-white tupelKategorie">
+                  ausgegeben
+                </th>
+              </tr>
+              </thead>
+            </v-table>
             <v-list-item v-for="i in kategorie" :key="i">
 <!--              <v-row>-->
 <!--                <v-col cols="5">-->
@@ -141,15 +159,11 @@
 <!--                  {{i.ausgabe}}}-->
 <!--                </v-col>-->
 <!--              </v-row>-->
-
-
-            </v-list-item>
-
             <v-table>
               <thead>
               <tr>
                 <th class="text-left">
-                  Kategorie
+                  {{i.kategorieName}}
                 </th>
                 <th class="text-left">
                   Budget
@@ -172,7 +186,7 @@
               </tr>
               </tbody>
             </v-table>
-
+            </v-list-item>
           </v-list>
         </v-col>
         <v-col class="ml-5 v-colTabletAnsicht">
@@ -446,5 +460,12 @@ export default {
 }
 .listInhaltkategorien {
   background-color: v-bind($store.state.color);
+}
+.tupelKategorie {
+  background-color: black;
+}
+.tupelKategorieDiv {
+  border: solid 3px white;
+  border-radius: 12px;
 }
 </style>
