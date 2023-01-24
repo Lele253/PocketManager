@@ -7,7 +7,7 @@
           <p class="ml-1 mt-1 text-white">{{ budget }}</p>
           <p class="ml-1 mt-1 text-white">€</p>
         </div>
-        <div v-if="budgetBearbeiten">
+        <div v-if="budgetBearbeiten" class="mt-n5">
           <v-text-field type="number" variant="outlined" v-model="budgetPlus" class=" ml-1 mt-8 "></v-text-field>
         </div>
 
@@ -132,27 +132,25 @@
           <h2><u>Kategorien der Ausgaben</u></h2>
 
           <!--Überschirftstupel Kategorien-->
-          <v-row class="tupelKategorieDiv">
-            <v-col cols="3"> Kategorie </v-col>
-            <v-col cols="3"> Budget </v-col>
-            <v-col cols="3"> offen </v-col>
-            <v-col cols="3"> ausgegeben </v-col>
+          <v-row class="mr-2 mt-3 justify-center d-flex">
+            <v-col cols="3"> <h3>Kategorie</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
+            <v-col cols="3"> <h3>Budget</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
+            <v-col cols="3"> <h3>offen</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
+            <v-col cols="3"> <h3>ausgegeben</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
           </v-row>
-
 <!--         KategorienRow-->
-          <v-row class="tupelKategorieDiv">
+          <v-row class="tupelKategorieDiv mt-n3">
 <!--            Inhalt KategorienRow-->
-            <v-col cols="12" v-for="i in kategorie" :key="i">
-            <v-row>
+            <v-col cols="12" v-for="i in kategorie" :key="i" >
+            <v-row class="text-black">
               <v-col cols="3"> {{ i.kategorieName }} </v-col>
               <v-col cols="3"> {{ i.kategorieBudget }} </v-col>
-              <v-col cols="3"> {{}} </v-col>
+              <v-col cols="3"> {{i.kategorieBudget}} </v-col>
               <v-col cols="3"> {{}} </v-col>
             </v-row>
+              <v-divider></v-divider>
             </v-col>
           </v-row>
-
-
         </v-col>
 <!--        Hilfscol für Spalt in der Mitte-->
         <v-col cols="1"></v-col>
@@ -161,11 +159,24 @@
           <h2><u>Mobil hinzugefügte Ausgaben</u></h2>
 
 <!--Überschriftstupel Ausgaben-->
-          <v-row class="tupelKategorieDiv d-flex justify-center">
-            <v-col cols="5"> Gekauft </v-col>
-            <v-col cols="5"> Preis </v-col>
+
+          <v-row class="mr-2 mt-3 justify-center d-flex"
+                  style="font-size: 15px">
+            <v-col cols="6"> <h3>Name</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
+            <v-col cols="6"> <h3>Preis</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
           </v-row>
 
+          <!--         AusgabenRow-->
+          <v-row class="tupelKategorieDiv mt-n3">
+            <!--            Inhalt AusgabenRow-->
+            <v-col cols="12" v-for="i in ausgabeGekauft" :key="i">
+              <v-row class="d-flex justify-center text-black">
+                <v-col cols="6"> {{ i.nameGekauft }} </v-col>
+                <v-col cols="6"> {{ i.preisGekauft }} € </v-col>
+              </v-row>
+              <v-divider></v-divider>
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
     </div>
@@ -275,17 +286,35 @@ export default {
       kategorie: [
           {kategorieID:1,kategorieName:'Essen', kategorieBudget:200,
             ausgabe:[
-                {ausgabeID:1,ausgabenname:'Megges', ausgabePreis:1.50, ausgabeDatum:'23.01.2023'},
-                {ausgabeID:2,ausgabenname:'BurgerKing', ausgabePreis:2.00, ausgabeDatum:'24.01.2023'}
+                {ausgabeID:1,ausgabenName:'Megges', ausgabePreis:1.50, ausgabeDatum:'23.01.2023'},
+                {ausgabeID:2,ausgabenName:'BurgerKing', ausgabePreis:2.00, ausgabeDatum:'24.01.2023'}
             ]
           },
-        {kategorieID:2,kategorieName:'Shoppen', kategorieBudget:150,
+          {kategorieID:2,kategorieName:'Shoppen', kategorieBudget:150,
           ausgabe:[
-            {ausgabeID:3,ausgabenname:'Zara', ausgabePreis:33.00, ausgabeDatum:'25.01.2023'},
-            {ausgabeID:4,ausgabenname:'NewYorker', ausgabePreis:15.00, ausgabeDatum:'26.01.2023'}
+            {ausgabeID:3,ausgabenName:'Zara', ausgabePreis:33.00, ausgabeDatum:'25.01.2023'},
+            {ausgabeID:4,ausgabenName:'NewYorker', ausgabePreis:15.00, ausgabeDatum:'26.01.2023'}
           ]
-        }
+          },
+        {kategorieID:3,kategorieName:'Auto', kategorieBudget:200, ausgabe:[]},
+        {kategorieID:4,kategorieName:'Einkaufen', kategorieBudget:200, ausgabe:[]},
+        {kategorieID:5,kategorieName:'Trinken', kategorieBudget:200, ausgabe:[]},
+        {kategorieID:6,kategorieName:'Freizeit', kategorieBudget:200, ausgabe:[]},
+        {kategorieID:7,kategorieName:'Schule', kategorieBudget:200, ausgabe:[]},
+        {kategorieID:8,kategorieName:'Abos', kategorieBudget:200, ausgabe:[]},
           ],
+      ausgabeGekauft: [
+          {gekauftID: 1,nameGekauft: 'Megges', preisGekauft: 3.50},
+          {gekauftID: 2,nameGekauft: 'BurgerKing', preisGekauft: 4},
+          {gekauftID: 3,nameGekauft: 'Zara', preisGekauft: 11.50},
+          {gekauftID: 4,nameGekauft: 'Edeka', preisGekauft: 4.75},
+          {gekauftID: 5,nameGekauft: 'Rewe', preisGekauft: 1.25},
+          {gekauftID: 6,nameGekauft: 'Eis', preisGekauft: 1.50},
+          {gekauftID: 7,nameGekauft: 'Cola', preisGekauft: 1.15},
+          {gekauftID: 8,nameGekauft: 'Tanken', preisGekauft: 67.64},
+          {gekauftID: 9,nameGekauft: 'Öl', preisGekauft: 20},
+          {gekauftID: 10,nameGekauft: 'Megges', preisGekauft: 1.25},
+      ]
     }
   },
   methods: {
@@ -296,10 +325,20 @@ export default {
     },
     getName() {
       this.$store.state.pageName = this.name
-    }
+    },
+    // ausgegebenesBudget(kategorieID) {
+    //   let ausgabe= 0;
+    //         for(var i in this.kategorie) {
+    //     ausgabe += this.kategorie[kategorieID].ausgabe[i].ausgabePreis
+    //   }
+    //   return {
+    //     ausgabe
+    //   }
+    // }
   },
   created() {
     this.getName()
+    // this.ausgegebenesBudget()
   },
   computed: {
     ...mapGetters(['user']),
@@ -433,20 +472,16 @@ export default {
   min-height: 500px;
   min-width: 450px;
   text-align: center;
-  border-radius: 15px;
-}
-.listInhaltkategorien {
-  background-color: v-bind($store.state.color);
-}
-.tupelKategorie {
-  background-color: black;
+  border-radius: 10px;
 }
 .tupelKategorieDiv {
   margin-top: 20px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.20);
   color: white;
-  border: solid 3px white;
-  border-radius: 12px;
+  /*border: solid 3px white;*/
+  /*border-radius: 10px;*/
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 .table-container {
   display: flex;
