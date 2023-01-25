@@ -107,7 +107,6 @@ export default {
       });
       const x = {kategorieName: this.neuerName,kategorieBudget: this.neuesBudget}
       this.kategorie.push(x)
-
       console.log(respons)
       this.dialog=false;
     }

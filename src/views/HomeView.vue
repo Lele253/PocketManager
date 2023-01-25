@@ -142,7 +142,7 @@
           <v-row class="tupelKategorieDiv mt-n3">
 <!--            Inhalt KategorienRow-->
             <v-col cols="12" v-for="(i,index) in kategorie" :key="i" >
-            <v-row class="text-black">
+            <v-row v-if="index !== 0" class="text-black">
               <v-col cols="3"> {{ i.kategorieName }} </v-col>
               <v-col cols="3"> {{ i.kategorieBudget }} </v-col>
 <!--              ausgegeben-->
@@ -303,6 +303,13 @@ export default {
       await this.$store.dispatch('user', respons.data);
       const response = await axios.get('http://localhost:8080/auth/kategorie/sortiert/' + this.user.nutzerId);
       this.$store.state.kategorie = response.data
+      if(this.$store.state.kategorie.length === 0){
+        const respons = await axios.post('http://localhost:8080/auth/kategorie/'+ this.user.nutzerId, {
+          kategorieName: 'ausgabeGekauft',
+          kategorieBudget: 0,
+        })
+        console.log(respons)
+      }
     },
     adieren() {
       this.$store.state.budget = (+this.$store.state.budget) + (+this.budgetPlus);
