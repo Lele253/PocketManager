@@ -6,10 +6,6 @@
           class="hintergrund"
           src="https://i.pinimg.com/564x/a2/25/1e/a2251ecad7b405f57195e13e88da6d2e.jpg">
         <div class="schleier">
-          <v-btn style="margin-top: 200px" @click="updateColor">
-            test
-          </v-btn>
-          {{ user }}
         </div>
       </v-img>
       <router-view class="router">
@@ -37,17 +33,15 @@ export default {
   async beforeCreate() {
     const respons = await axios.get('http://localhost:8080/auth/user');
     await this.$store.dispatch('user', respons.data);
+    this.updateColor()
   },
 
   mounted() {
-    this.updateColor()
-
+  },
+  created() {
   },
   methods: {
     async updateColor() {
-      console.log(this.user.farbe)
-      const respons = await axios.get('http://localhost:8080/auth/user');
-      await this.$store.dispatch('user', respons.data);
       this.$store.state.color = this.user.farbe;
     }
   },
