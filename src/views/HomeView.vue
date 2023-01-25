@@ -69,6 +69,7 @@
               Buy
             </v-btn>
           </template>
+          <v-form @submit.prevent="erstelleAusgabe">
           <v-card class="cardFarbe">
             <v-card-title class="text-center text-h5">
               Neue Ausgabe
@@ -82,6 +83,7 @@
                       md="4"
                   >
                     <v-text-field
+                        v-model="ausgabeName"
                         variant="solo"
                         label="Was hast du gekauft?"
                         required
@@ -93,6 +95,7 @@
                       md="4"
                   >
                     <v-text-field
+                        v-model="ausgabePreis"
                         variant="solo"
                         label="Preis"
                     ></v-text-field>
@@ -112,27 +115,29 @@
               <v-btn
                   color="green"
                   variant="text"
-                  @click="dialog1 = false"
+                  type="submit"
               >
                 Speichern
               </v-btn>
             </v-card-actions>
           </v-card>
+          </v-form>
         </v-dialog>
       </div>
 
     </div>
 
     <!----------------------------------------AngemeldetTabletAnsicht------------------------>
-    <div style="max-width: 98%" v-if="user" class="hidden-xs d-flex justify-center">
+
+    <div style="max-width: 98%" v-if="user" class="d-flex justify-center">
 <!--      Container Kategorien-->
       <v-row style="width: 100%" class="d-flex justify-center ml-1">
-        <v-col cols="5" class="ml-7 v-colTabletAnsicht">
+        <v-col cols="5" class="ml-7 v-colTabletAnsicht hidden-xs">
 <!--          Überschrift Kategorientabelle-->
           <h2><u>Kategorien der Ausgaben</u></h2>
 
           <!--Überschirftstupel Kategorien-->
-          <v-row class="mr-2 mt-3 justify-center d-flex">
+          <v-row class="mr-2 mt-3 justify-center d-flex" style="font-size: 12px">
             <v-col cols="3"> <h3>Kategorie</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
             <v-col cols="3"> <h3>Budget</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
             <v-col cols="3"> <h3>ausgegeben</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
@@ -156,7 +161,7 @@
         </v-col>
 <!--        Hilfscol für Spalt in der Mitte-->
         <v-spacer></v-spacer>
-        <v-col cols="5" class="mr-5 v-colTabletAnsicht">
+        <v-col cols="5" class="mr-5 v-colTabletAnsicht hidden-xs">
 <!--          Überschrift Ausgaben-->
           <h2><u>Mobil hinzugefügte Ausgaben</u></h2>
 
@@ -283,6 +288,8 @@ export default {
       budgetBearbeiten: false,
       zwischensumme: [],
       kategorienZwischensumme: 0,
+      ausgabeName: '',
+      ausgabePreis: '',
       ausgabeGekauft: [
           {ausgabeID: 5,ausgabeName: 'Megges', ausgabePreis: 3.50, ausgabeDatum: '24.01.2023'},
           {ausgabeID: 6,ausgabeName: 'BurgerKing', ausgabePreis: 4, ausgabeDatum: '24.01.2023'},
@@ -326,7 +333,16 @@ export default {
         }
         this.zwischensumme.push(this.kategorienZwischensumme)
       }
-    }
+    },
+    async erstelleAusgabe() {
+      const response = await axios.post('http://localhost:8080/auth/ausgabe/'+1,{
+        ausgabeName: this.ausgabeName,
+        ausgabePreis: this.ausgabePreis,
+        ausgabeDatum: this.datum,
+      })
+      console.log(response)
+      this.dialog1 = false;
+      }
   },
 
   beforeCreate() {
@@ -335,7 +351,6 @@ export default {
   created() {
 
   },
-
   mounted() {
     this.getKategorie()
     this.getName()
@@ -346,8 +361,11 @@ export default {
   computed: {
     ...mapGetters(['user']),
     ...mapGetters(['budget']),
-    ...mapGetters(['kategorie'])
-
+    ...mapGetters(['kategorie']),
+    datum: function () {
+      let heute = new Date();
+      return heute.getDate() + '.' + (heute.getMonth() + 1) + '.' + heute.getFullYear()
+    },
 
   },
 
