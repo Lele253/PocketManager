@@ -124,62 +124,73 @@
     </div>
 
     <!----------------------------------------AngemeldetTabletAnsicht------------------------>
-    <div style="max-width: 98%" v-if="user" class="hidden-xs d-flex justify-center">
-<!--      Container Kategorien-->
-      <v-row style="width: 100%" class="d-flex justify-center ml-1">
-        <v-col cols="5" class="ml-7 v-colTabletAnsicht">
-<!--          Überschrift Kategorientabelle-->
-          <h2><u>Kategorien der Ausgaben</u></h2>
+    <div id="AngemeldetTabletAnsicht" class="hidden-xs">
+      <div style="max-width: 98%" v-if="user" class="d-flex justify-center">
+  <!--      Container Kategorien-->
+        <v-row style="width: 100%" class="d-flex justify-center ml-1">
+          <v-col cols="5" class="ml-7 v-colTabletAnsicht">
+            <!--          Überschrift Kategorientabelle-->
+            <h2 class="hidden-sm"><u>Kategorien der Ausgaben</u></h2>
+            <h3 class="hidden-md-and-up"><u>Kategorien der Ausgaben</u></h3>
 
-          <!--Überschirftstupel Kategorien-->
-          <v-row class="mr-2 mt-3 justify-center d-flex">
-            <v-col cols="3"> <h3>Kategorie</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
-            <v-col cols="3"> <h3>Budget</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
-            <v-col cols="3"> <h3>ausgegeben</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
-            <v-col cols="3"> <h3>offen</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
-          </v-row>
-<!--         KategorienRow-->
-          <v-row class="tupelKategorieDiv mt-n3">
-<!--            Inhalt KategorienRow-->
-            <v-col cols="12" v-for="(i,index) in kategorie" :key="i" >
-            <v-row class="text-black">
-              <v-col cols="3"> {{ i.kategorieName }} </v-col>
-              <v-col cols="3"> {{ i.kategorieBudget }} </v-col>
-<!--              ausgegeben-->
-              <v-col cols="3"> {{zwischensumme[index]}}</v-col>
-<!--              offen-->
-              <v-col cols="3"> {{ i.kategorieBudget - zwischensumme[index]}} </v-col>
+            <!--Überschirftstupel Kategorien-->
+            <v-row class="mt-3 hidden-sm">
+              <v-col cols="3"> <h3>Kategorie</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
+              <v-col cols="3"> <h3>Budget</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
+              <v-col cols="3"> <h3>ausgegeben</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
+              <v-col cols="3"> <h3>offen</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
             </v-row>
-              <v-divider></v-divider>
-            </v-col>
-          </v-row>
-        </v-col>
-<!--        Hilfscol für Spalt in der Mitte-->
-        <v-spacer></v-spacer>
-        <v-col cols="5" class="mr-5 v-colTabletAnsicht">
-<!--          Überschrift Ausgaben-->
-          <h2><u>Mobil hinzugefügte Ausgaben</u></h2>
 
-<!-------------Überschriftstupel Ausgaben-->
-
-          <v-row class="mr-2 mt-3 justify-center d-flex"
-                  style="font-size: 15px">
-            <v-col cols="6"> <h3>Name</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
-            <v-col cols="6"> <h3>Preis</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
-          </v-row>
-          <!--         AusgabenRow-->
-          <v-row class="tupelKategorieDiv mt-n3">
-            <!--            Inhalt AusgabenRow-->
-            <v-col cols="12" v-for="i in ausgabeGekauft" :key="i">
-              <v-row draggable="true" class="d-flex justify-center text-black">
-                <v-col cols="6"> {{ i.ausgabeName }} </v-col>
-                <v-col cols="6"> {{ i.ausgabePreis}} € </v-col>
+            <v-row class="mt-3 hidden-md-and-up" style="font-size: 12px">
+              <v-col cols="3"> <h3>Kategorie</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
+              <v-col cols="3"> <h3>Budget</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
+              <v-col cols="3"> <h3>ausgegeben</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
+              <v-col cols="3"> <h3>offen</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
+            </v-row>
+  <!--         KategorienRow-->
+            <v-row class="tupelKategorieDiv mt-n3">
+  <!--            Inhalt KategorienRow-->
+              <v-col cols="12" v-for="(i,index) in kategorie" :key="i" >
+              <v-row class="text-black">
+                <v-col cols="3"> {{ i.kategorieName }} </v-col>
+                <v-col cols="3"> {{ i.kategorieBudget }} </v-col>
+  <!--              ausgegeben-->
+                <v-col cols="3"> {{zwischensumme[index]}}</v-col>
+  <!--              offen-->
+                <v-col cols="3"> {{ i.kategorieBudget - zwischensumme[index]}} </v-col>
               </v-row>
-              <v-divider></v-divider>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
+                <v-divider></v-divider>
+              </v-col>
+            </v-row>
+          </v-col>
+  <!--        v-Spacer für Spalt in der Mitte-->
+          <v-spacer></v-spacer>
+          <v-col cols="5" class="mr-5 v-colTabletAnsicht">
+  <!--          Überschrift Ausgaben-->
+            <h2 class="hidden-sm"><u>Mobil hinzugefügte Ausgaben</u></h2>
+            <h3 class="hidden-md-and-up"><u>Mobil hinzugefügte Ausgaben</u></h3>
+
+  <!-------------Überschriftstupel Ausgaben-->
+
+            <v-row class=" mt-3 justify-center d-flex"
+                    style="font-size: 15px">
+              <v-col cols="6"> <h3>Name</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
+              <v-col cols="6"> <h3>Preis</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
+            </v-row>
+            <!--         AusgabenRow-->
+            <v-row class="tupelKategorieDiv mt-n3">
+              <!--            Inhalt AusgabenRow-->
+              <v-col cols="12" v-for="i in ausgabeGekauft" :key="i">
+                <v-row draggable="true" class="d-flex justify-center text-black">
+                  <v-col cols="6"> {{ i.ausgabeName }} </v-col>
+                  <v-col cols="6"> {{ i.ausgabePreis}} € </v-col>
+                </v-row>
+                <v-divider></v-divider>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </div>
     </div>
 
 
