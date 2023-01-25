@@ -270,6 +270,7 @@
 import ColorComponent from "@/components/ColorComponent";
 import {Icon} from '@iconify/vue';
 import {mapGetters} from "vuex";
+import axios from "axios";
 
 export default {
   data() {
@@ -282,26 +283,6 @@ export default {
       budgetBearbeiten: false,
       zwischensumme: [],
       kategorienZwischensumme: 0,
-      kategorie: [
-          {kategorieID:1,kategorieName:'Essen', kategorieBudget:200,
-            ausgabe:[
-                {ausgabeID:1,ausgabeName:'Megges', ausgabePreis:1.50, ausgabeDatum:'23.01.2023'},
-                {ausgabeID:2,ausgabeName:'BurgerKing', ausgabePreis:2.00, ausgabeDatum:'24.01.2023'}
-            ]
-          },
-          {kategorieID:2,kategorieName:'Shoppen', kategorieBudget:150,
-          ausgabe:[
-            {ausgabeID:3,ausgabeName:'Zara', ausgabePreis:33.00, ausgabeDatum:'25.01.2023'},
-            {ausgabeID:4,ausgabeName:'NewYorker', ausgabePreis:15.00, ausgabeDatum:'26.01.2023'}
-          ]
-          },
-        {kategorieID:3,kategorieName:'Auto', kategorieBudget:200, ausgabe:[ {ausgabeID:5,ausgabeName:'NewYorker', ausgabePreis:22.00, ausgabeDatum:'26.01.2023'}]},
-        {kategorieID:4,kategorieName:'Einkaufen', kategorieBudget:200, ausgabe:[ {ausgabeID:6,ausgabeName:'NewYorker', ausgabePreis:11.00, ausgabeDatum:'26.01.2023'}]},
-        {kategorieID:5,kategorieName:'Trinken', kategorieBudget:200, ausgabe:[ {ausgabeID:7,ausgabeName:'NewYorker', ausgabePreis:13.00, ausgabeDatum:'26.01.2023'}]},
-        {kategorieID:6,kategorieName:'Freizeit', kategorieBudget:200, ausgabe:[ {ausgabeID:8,ausgabeName:'NewYorker', ausgabePreis:8.00, ausgabeDatum:'26.01.2023'}]},
-        {kategorieID:7,kategorieName:'Schule', kategorieBudget:200, ausgabe:[ {ausgabeID:9,ausgabeName:'NewYorker', ausgabePreis:7.00, ausgabeDatum:'26.01.2023'}]},
-        {kategorieID:8,kategorieName:'Abos', kategorieBudget:200, ausgabe:[ {ausgabeID:10,ausgabeName:'NewYorker', ausgabePreis:66.00, ausgabeDatum:'26.01.2023'}]},
-          ],
       ausgabeGekauft: [
           {ausgabeID: 5,ausgabeName: 'Megges', ausgabePreis: 3.50, ausgabeDatum: '24.01.2023'},
           {ausgabeID: 6,ausgabeName: 'BurgerKing', ausgabePreis: 4, ausgabeDatum: '24.01.2023'},
@@ -317,6 +298,12 @@ export default {
     }
   },
   methods: {
+    async getKategorie() {
+      const respons = await axios.get('http://localhost:8080/auth/user');
+      await this.$store.dispatch('user', respons.data);
+      const response = await axios.get('http://localhost:8080/auth/kategorie/sortiert/' + this.user.nutzerId);
+      this.$store.state.kategorie = response.data
+    },
     adieren() {
       this.$store.state.budget = (+this.$store.state.budget) + (+this.budgetPlus);
       this.budgetBearbeiten = false
@@ -334,19 +321,26 @@ export default {
       }
     }
   },
-  created() {
-    this.getName()
-  },
-  beforeMount() {
-    console.log(this.kategorie)
+
+  beforeCreate() {
 
   },
+  created() {
+
+  },
+
   mounted() {
+    this.getKategorie()
+    this.getName()
     this.ausgegebenesBudget()
+  },
+  updated() {
   },
   computed: {
     ...mapGetters(['user']),
-    ...mapGetters(['budget'])
+    ...mapGetters(['budget']),
+    ...mapGetters(['kategorie'])
+
 
   },
 

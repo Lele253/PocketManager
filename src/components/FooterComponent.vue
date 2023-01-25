@@ -8,7 +8,6 @@
         <Icon class="iconfooter" icon="pajamas:hamburger" />
       </v-col>
       <v-col class="d-flex justify-center align-center  ">
-<!--        <Icon @click="$router.push('/kategorieAdd')" class="iconfooter" icon="mdi:checkbox-marked-circle-plus-outline" />-->
 
         <div>
           <Icon class="iconfooter pt-1"
@@ -96,16 +95,19 @@ export default {
   data() {
     return {
       dialog: false,
-      neuesBudet: 0,
+      neuesBudget: 0,
       neuerName: ''
     }
   },
   methods: {
     async neueKategorie() {
-      const respons = await axios.post('http://localhost:8080/auth/kategorie/'+ 1, {
+      const respons = await axios.post('http://localhost:8080/auth/kategorie/'+ this.user.nutzerId, {
         kategorieName: this.neuerName,
-        kategorieBudget: this.neuesBudet,
+        kategorieBudget: this.neuesBudget,
       });
+      const x = {kategorieName: this.neuerName,kategorieBudget: this.neuesBudget}
+      this.kategorie.push(x)
+
       console.log(respons)
       this.dialog=false;
     }
@@ -115,6 +117,7 @@ export default {
 },
   computed: {
     ...mapGetters(['user']),
+    ...mapGetters(['kategorie']),
 
   }
 }

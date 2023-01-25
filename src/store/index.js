@@ -8,6 +8,7 @@ export default createStore({
         color: '#daa31f',
         colorAktive: false,
         budget: 0,
+        kategorie:[],
     },
     getters: {
         budget: (state) => {
@@ -16,6 +17,9 @@ export default createStore({
         },
         user: (state) => {
             return state.user
+        },
+        kategorie: (state) => {
+            return state.kategorie
         }
     },
     mutations: {
@@ -24,6 +28,9 @@ export default createStore({
         },
         budget(state, budget) {
             state.budget = budget
+        },
+        kategorie(state, kategorie) {
+            state.kategorie = kategorie
         }
     },
     actions: {
@@ -32,6 +39,9 @@ export default createStore({
         },
         budget(context, budget) {
             context.commit('budget', budget)
+        },
+        kategorie(context, kategorie) {
+            context.kategorie('budget', kategorie)
         }
     },
     modules: {}
