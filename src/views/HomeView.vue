@@ -45,7 +45,7 @@
               <v-spacer></v-spacer>
               <v-btn
                   class="closeB"
-                  @click="dialog = false"
+                  @click="changeFarbe"
               >
                 Speichern
               </v-btn>
@@ -137,17 +137,17 @@
           <h2><u>Kategorien der Ausgaben</u></h2>
 
           <!--Überschirftstupel Kategorien-->
-          <v-row class="mr-2 mt-3 justify-center d-flex" style="font-size: 12px">
+          <v-row class=" mt-3 justify-center d-flex" style="font-size: 12px">
             <v-col cols="3"> <h3>Kategorie</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
             <v-col cols="3"> <h3>Budget</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
             <v-col cols="3"> <h3>ausgegeben</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
             <v-col cols="3"> <h3>offen</h3><Icon style="font-size: 30px" icon="mdi:arrow-down-bold"/></v-col>
           </v-row>
 <!--         KategorienRow-->
-          <v-row class="tupelKategorieDiv mt-n3">
+          <v-row  v-for="(i,index) in kategorie" :key="i"  class="tupelKategorieDiv mt-2">
 <!--            Inhalt KategorienRow-->
-            <v-col cols="12" v-for="(i,index) in kategorie" :key="i" >
-            <v-row v-if="index !== 0" class="text-black">
+            <v-col cols="12" v-if="index !== 0" >
+            <v-row class="text-black">
               <v-col cols="3"> {{ i.kategorieName }} </v-col>
               <v-col cols="3"> {{ i.kategorieBudget }} </v-col>
 <!--              ausgegeben-->
@@ -163,7 +163,7 @@
         <v-spacer></v-spacer>
         <v-col cols="5" class="mr-5 v-colTabletAnsicht hidden-xs">
 <!--          Überschrift Ausgaben-->
-          <h2><u>Mobil hinzugefügte Ausgaben</u></h2>
+          <h2><u>Spontane Ausgaben</u></h2>
 
 <!-------------Überschriftstupel Ausgaben-->
 
@@ -174,7 +174,7 @@
           </v-row>
           <!--         AusgabenRow-->
           <v-row class="tupelKategorieDiv mt-n3">
-            <!--            Inhalt AusgabenRow-->
+<!--                        Inhalt AusgabenRow-->
             <v-col cols="12" v-for="i in ausgabeGekauft" :key="i">
               <v-row draggable="true" class="d-flex justify-center text-black">
                 <v-col cols="6"> {{ i.ausgabeName }} </v-col>
@@ -290,18 +290,18 @@ export default {
       kategorienZwischensumme: 0,
       ausgabeName: '',
       ausgabePreis: '',
-      ausgabeGekauft: [
-          {ausgabeID: 5,ausgabeName: 'Megges', ausgabePreis: 3.50, ausgabeDatum: '24.01.2023'},
-          {ausgabeID: 6,ausgabeName: 'BurgerKing', ausgabePreis: 4, ausgabeDatum: '24.01.2023'},
-          {ausgabeID: 7,ausgabeName: 'Zara', ausgabePreis: 11.50, ausgabeDatum: '24.01.2023'},
-          {ausgabeID: 8,ausgabeName: 'Edeka', ausgabePreis: 4.75, ausgabeDatum: '24.01.2023'},
-          {ausgabeID: 9,ausgabeName: 'Rewe', ausgabePreis: 1.25, ausgabeDatum: '24.01.2023'},
-          {ausgabeID: 10,ausgabeName: 'Eis', ausgabePreis: 1.50, ausgabeDatum: '24.01.2023'},
-          {ausgabeID: 11,ausgabeName: 'Cola', ausgabePreis: 1.15, ausgabeDatum: '24.01.2023'},
-          {ausgabeID: 12,ausgabeName: 'Tanken', ausgabePreis: 67.64, ausgabeDatum: '24.01.2023'},
-          {ausgabeID: 13,ausgabeName: 'Öl', ausgabePreis: 20, ausgabeDatum: '24.01.2023'},
-          {ausgabeID: 14,ausgabeName: 'Megges', ausgabePreis: 1.25, ausgabeDatum: '24.01.2023'},
-      ]
+      // ausgabeGekauft: [
+      //     {ausgabeID: 5,ausgabeName: 'Megges', ausgabePreis: 3.50, ausgabeDatum: '24.01.2023'},
+      //     {ausgabeID: 6,ausgabeName: 'BurgerKing', ausgabePreis: 4, ausgabeDatum: '24.01.2023'},
+      //     {ausgabeID: 7,ausgabeName: 'Zara', ausgabePreis: 11.50, ausgabeDatum: '24.01.2023'},
+      //     {ausgabeID: 8,ausgabeName: 'Edeka', ausgabePreis: 4.75, ausgabeDatum: '24.01.2023'},
+      //     {ausgabeID: 9,ausgabeName: 'Rewe', ausgabePreis: 1.25, ausgabeDatum: '24.01.2023'},
+      //     {ausgabeID: 10,ausgabeName: 'Eis', ausgabePreis: 1.50, ausgabeDatum: '24.01.2023'},
+      //     {ausgabeID: 11,ausgabeName: 'Cola', ausgabePreis: 1.15, ausgabeDatum: '24.01.2023'},
+      //     {ausgabeID: 12,ausgabeName: 'Tanken', ausgabePreis: 67.64, ausgabeDatum: '24.01.2023'},
+      //     {ausgabeID: 13,ausgabeName: 'Öl', ausgabePreis: 20, ausgabeDatum: '24.01.2023'},
+      //     {ausgabeID: 14,ausgabeName: 'Megges', ausgabePreis: 1.25, ausgabeDatum: '24.01.2023'},
+      // ]
     }
   },
   methods: {
@@ -335,14 +335,30 @@ export default {
       }
     },
     async erstelleAusgabe() {
-      const response = await axios.post('http://localhost:8080/auth/ausgabe/'+1,{
+      const response = await axios.post('http://localhost:8080/auth/ausgabe/'+this.kategorie[0].kategorieId,{
         ausgabeName: this.ausgabeName,
         ausgabePreis: this.ausgabePreis,
         ausgabeDatum: this.datum,
       })
       console.log(response)
       this.dialog1 = false;
+      },
+    async getAusgabe() {
+      await this.getKategorie();
+      const response = await axios.get('http://localhost:8080/auth/ausgabe/sortiert/'+ this.kategorie[0].kategorieId)
+      let data = response.data;
+      this.$store.state.ausgabeGekauft = [];
+      for(let i=0; i< data.length; i++) {
+        this.ausgabeGekauft.push(data[i])
       }
+    },
+    async changeFarbe() {
+      const response = await axios.put('http://localhost:8080/auth/user/' + this.user.nutzerId, {
+        farbe: this.$store.state.color,
+      })
+      console.log(response)
+      this.dialog = false;
+    },
   },
 
   beforeCreate() {
@@ -355,6 +371,7 @@ export default {
     this.getKategorie()
     this.getName()
     this.ausgegebenesBudget()
+    this.getAusgabe()
   },
   updated() {
   },
@@ -362,6 +379,7 @@ export default {
     ...mapGetters(['user']),
     ...mapGetters(['budget']),
     ...mapGetters(['kategorie']),
+    ...mapGetters(['ausgabeGekauft']),
     datum: function () {
       let heute = new Date();
       return heute.getDate() + '.' + (heute.getMonth() + 1) + '.' + heute.getFullYear()
