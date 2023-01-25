@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <HeaderComponent></HeaderComponent>
+    <HeaderComponent/>
     <v-main>
       <v-img
           class="hintergrund"

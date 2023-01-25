@@ -336,7 +336,6 @@ export default {
   },
   created() {
     this.getName()
-    // this.ausgegebenesBudget()
   },
   beforeMount() {
     console.log(this.kategorie)
@@ -475,7 +474,6 @@ export default {
 .v-colTabletAnsicht {
   background-color: v-bind($store.state.color);
   min-height: 500px;
-  min-width: 450px;
   text-align: center;
   border-radius: 10px;
 }

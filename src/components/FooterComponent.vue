@@ -28,6 +28,7 @@
               </div>
             </template>
             <div class="d-flex justify-center">
+              <v-form @submit.prevent="neueKategorie">
             <v-card class="kategorieCard">
               <v-card-title>
                 Erstelle eine neue Kategorie
@@ -39,6 +40,7 @@
                     cols="12"
                     >
                       <v-text-field
+                      v-model="neuerName"
                       variant="solo"
                       label="Name"
                       >
@@ -51,6 +53,7 @@
                           variant="solo"
                           type="number"
                           label="Budget"
+                          v-model="neuesBudget"
                       >
                       </v-text-field>
                     </v-col>
@@ -65,12 +68,13 @@
                   Schließen
                 </v-btn>
                 <v-btn
-                    @click="dialog = false"
+                    type="submit"
                 >
                   Speichern
                 </v-btn>
               </v-card-actions>
             </v-card>
+              </v-form>
             </div>
           </v-dialog>
         </div>
@@ -86,11 +90,24 @@
 <script>
 import { Icon } from '@iconify/vue';
 import {mapGetters} from "vuex";
+import axios from "axios";
 export default {
   name: "FooterComponent",
   data() {
     return {
       dialog: false,
+      neuesBudet: 0,
+      neuerName: ''
+    }
+  },
+  methods: {
+    async neueKategorie() {
+      const respons = await axios.post('http://localhost:8080/auth/kategorie/'+ 1, {
+        kategorieName: this.neuerName,
+        kategorieBudget: this.neuesBudet,
+      });
+      console.log(respons)
+      this.dialog=false;
     }
   },
   components:{
