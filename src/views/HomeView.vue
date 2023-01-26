@@ -305,6 +305,12 @@ export default {
     }
   },
   methods: {
+    async getKategorie1(){
+      const respons = await axios.get('http://81.169.199.175:8080/auth/user');
+      await this.$store.dispatch('user', respons.data);
+      const response = await axios.get('http://81.169.199.175:8080/auth/kategorie/sortiert/' + this.user.nutzerId);
+      this.$store.state.kategorie = response.data
+    },
     async getKategorie() {
       const respons = await axios.get('http://81.169.199.175:8080/auth/user');
       await this.$store.dispatch('user', respons.data);
@@ -344,7 +350,7 @@ export default {
       this.dialog1 = false;
       },
     async getAusgabe() {
-      await this.getKategorie();
+      await this.getKategorie1();
       const response = await axios.get('http://81.169.199.175:8080/auth/ausgabe/sortiert/'+ this.kategorie[0].kategorieId)
       let data = response.data;
       this.$store.state.ausgabeGekauft = [];

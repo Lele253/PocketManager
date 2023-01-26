@@ -101,7 +101,7 @@ export default {
   },
   methods: {
     async neueKategorie() {
-      const respons = await axios.post('http://localhost:8080/auth/kategorie/'+ this.user.nutzerId, {
+      const respons = await axios.post('http://81.169.199.175:8080/auth/kategorie/'+ this.user.nutzerId, {
         kategorieName: this.neuerName,
         kategorieBudget: this.neuesBudget,
       });
