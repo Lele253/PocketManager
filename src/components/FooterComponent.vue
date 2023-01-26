@@ -80,7 +80,7 @@
 
       </v-col>
       <v-col class="d-flex justify-center align-center  ">
-        <Icon class="iconfooter" icon="healthicons:ui-user-profile" />
+        <Icon @click="$router.push('/profile')" class="iconfooter" icon="healthicons:ui-user-profile" />
       </v-col>
     </v-row>
   </div>
