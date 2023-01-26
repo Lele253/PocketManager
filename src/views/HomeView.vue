@@ -306,12 +306,12 @@ export default {
   },
   methods: {
     async getKategorie() {
-      const respons = await axios.get('http://localhost:8080/auth/user');
+      const respons = await axios.get('http://81.169.199.175:8080/auth/user');
       await this.$store.dispatch('user', respons.data);
-      const response = await axios.get('http://localhost:8080/auth/kategorie/sortiert/' + this.user.nutzerId);
+      const response = await axios.get('http://81.169.199.175:8080/auth/kategorie/sortiert/' + this.user.nutzerId);
       this.$store.state.kategorie = response.data
       if(this.$store.state.kategorie.length === 0){
-        const respons = await axios.post('http://localhost:8080/auth/kategorie/'+ this.user.nutzerId, {
+        const respons = await axios.post('http://81.169.199.175:8080/auth/kategorie/'+ this.user.nutzerId, {
           kategorieName: 'ausgabeGekauft',
           kategorieBudget: 0,
         })
@@ -335,7 +335,7 @@ export default {
       }
     },
     async erstelleAusgabe() {
-      const response = await axios.post('http://localhost:8080/auth/ausgabe/'+this.kategorie[0].kategorieId,{
+      const response = await axios.post('http://81.169.199.175:8080/auth/ausgabe/'+this.kategorie[0].kategorieId,{
         ausgabeName: this.ausgabeName,
         ausgabePreis: this.ausgabePreis,
         ausgabeDatum: this.datum,
@@ -345,7 +345,7 @@ export default {
       },
     async getAusgabe() {
       await this.getKategorie();
-      const response = await axios.get('http://localhost:8080/auth/ausgabe/sortiert/'+ this.kategorie[0].kategorieId)
+      const response = await axios.get('http://81.169.199.175:8080/auth/ausgabe/sortiert/'+ this.kategorie[0].kategorieId)
       let data = response.data;
       this.$store.state.ausgabeGekauft = [];
       for(let i=0; i< data.length; i++) {
@@ -353,7 +353,7 @@ export default {
       }
     },
     async changeFarbe() {
-      const response = await axios.put('http://localhost:8080/auth/user/' + this.user.nutzerId, {
+      const response = await axios.put('http://81.169.199.175:8080/auth/user/' + this.user.nutzerId, {
         farbe: this.$store.state.color,
       })
       console.log(response)

@@ -31,7 +31,7 @@ export default {
   },
 
   async beforeCreate() {
-    const respons = await axios.get('http://localhost:8080/auth/user');
+    const respons = await axios.get('http://81.169.199.175:8080/auth/user');
     await this.$store.dispatch('user', respons.data);
     this.updateColor()
   },

@@ -55,7 +55,7 @@ export default {
   methods: {
     async regist() {
       if(this.password == this.passwordW){
-      const respons = await axios.post('http://localhost:8080/auth/regist', {
+      const respons = await axios.post('http://81.169.199.175:8080/auth/regist', {
         email: this.username,
         password: this.password,
         username: this.username
